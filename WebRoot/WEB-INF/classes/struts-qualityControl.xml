@@ -1,0 +1,45 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="MetroQualityControl" namespace="/indicatorControl" extends="cuteframework-default">
+
+		<!-- 跳转到list页面 -->
+		<action name="showQualityControlPage" class="metroQualityControlAction" method="showQualityControlPage">
+			<result name="showQualityControlPage">/operationIndicator/qualityControlList.jsp</result>
+		</action>
+		
+		<!-- 跳转到添加页面-->
+		<action name="showQualityControlAddPage" class="metroQualityControlAction" method="showQualityControlAddPage">
+			<result name="showQualityControlAddPage">/operationIndicator/qualityControlAdd.jsp</result>
+		</action>
+		
+		<!-- 保存-->
+		<action name="saveQualityControl" class="metroQualityControlAction" method="saveQualityControl">
+			<result name="saveQualityControl">/operationIndicator/success.jsp</result>
+			<result name="fail">/operationIndicator/qualityControlAdd.jsp</result>
+		</action>
+		
+		<!--跳转到详细页面-->
+		<action name="findQualityControlDetail" class="metroQualityControlAction" method="findQualityControlDetail">
+			<result name="findQualityControlDetail">/operationIndicator/qualityControlView.jsp</result>
+		</action>
+		
+		<!--跳转到编辑页面-->
+		<action name="showQualityControlDetailPage" class="metroQualityControlAction" method="showQualityControlDetailPage">
+			<result name="showQualityControlDetailPage">/operationIndicator/qualityControlEdit.jsp</result>
+		</action>
+		
+		<!--保存更新-->
+		<action name="updateQualityControl" class="metroQualityControlAction" method="updateQualityControl">
+			<result name="updateQualityControl">/operationIndicator/success.jsp</result>
+		</action>
+		
+		<!--删除-->
+		<action name="deleteQualityControl" class="metroQualityControlAction" method="deleteQualityControl"/>
+		
+		
+		
+	</package>
+</struts>
+	

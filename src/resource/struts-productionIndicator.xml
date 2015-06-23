@@ -1,0 +1,38 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="productionIndicator" namespace="/operationIndicator" extends="cuteframework-default">
+		<!-- 跳转页面 -->
+		<action name="showProductionListPage" class="productionIndicatorAction" method="showProductionListPage">
+			<result name="showProductionListPage">/operationIndicator/listProduction.jsp</result>
+		</action>
+		<!-- 查询图表数据production -->
+		<action name="findChartDataProduction" class="productionIndicatorAction" method="findChartDataProduction"/>
+		
+		<!-- 跳转到详细页面 -->
+		<action name="showProductionDetailPage" class="productionIndicatorAction" method="showProductionDetailPage">
+			<result name="chart1">/operationIndicator/chart1.jsp</result>
+			<result name="chart2">/operationIndicator/chart2.jsp</result>
+			<result name="chart3">/operationIndicator/chart3.jsp</result>
+			<result name="chart4">/operationIndicator/chart4.jsp</result>
+			<result name="chart5">/operationIndicator/chart5.jsp</result>
+			<result name="chart6">/operationIndicator/chart6.jsp</result>
+			<result name="chart7">/operationIndicator/chart7.jsp</result>
+		</action>
+		
+		<!-- 查询图表数据production月视图 -->
+		<action name="findChartDataProductionByMonth" class="productionIndicatorAction" method="findChartDataProductionByMonth"/>
+		<!-- 查询图表数据production年视图 -->
+		<action name="findChartDataProductionByYear" class="productionIndicatorAction" method="findChartDataProductionByYear"/>
+		
+		<!-- production详细页面 -->
+		<action name="findProductionBetweenDays" class="productionIndicatorAction" method="findProductionBetweenDays"/>
+		
+		<!-- production详细页面 -->
+		<action name="findQualityBetweenDays" class="productionIndicatorAction" method="findQualityBetweenDays"/>
+		
+		
+	</package>
+</struts>
+	

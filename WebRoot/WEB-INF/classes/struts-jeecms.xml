@@ -1,0 +1,27 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="jeecms" namespace="/jeecms" extends="cuteframework-default">
+		<action name="getJeecmsInfo" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction" method="getJeecmsInfo"/>
+		
+		<action name="findStfbNewsByPage" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction" method="stfbNewsByPage">
+			<result name="success">
+				/jeecms/dj_list.jsp
+			</result>
+		</action>
+		
+		<action name="findByPage" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction" method=" findByPage">
+			<result name="success">
+				/jeecms/dj_list.jsp
+			</result>
+		</action>
+		
+		<action name="findDateByPage" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction" method="findDateByPage"/>
+		
+		<action name="findIfWsLeader" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction" method="findIfWsLeader"/>
+		
+		<action name="findShortContent" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction" method="findShortContent"></action>
+	</package>
+</struts>
+	

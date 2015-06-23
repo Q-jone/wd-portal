@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- begin-user-doc -->
+	<!-- end-user-doc -->
+	
+	<!-- =================================================================== -->
+	<!-- DAO Impl Definition                                                 -->
+	<!-- =================================================================== -->
+
+	<bean id="constructionNoticeDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.constructionNotice.dao.impl.ConstructionNoticeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="constructionNoticeServiceImpl"
+		class="com.wonders.stpt.constructionNotice.service.impl.ConstructionNoticeServiceImpl">
+		<property name="constructionNoticeDao" ref="constructionNoticeDaoImpl" />
+	</bean>
+	
+	<bean id="constructionNoticeService" parent="basicTxProxy">
+		<property name="target" ref="constructionNoticeServiceImpl" />
+	</bean>
+	
+	<bean name="constructionNoticeAction"
+		class="com.wonders.stpt.constructionNotice.action.ConstructionNoticeAction"
+		singleton="true">
+		<property name="constructionNoticeService" ref="constructionNoticeService"></property>	
+	</bean>
+
+</beans>
+	

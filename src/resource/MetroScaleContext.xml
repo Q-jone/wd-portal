@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--MetroScale Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="metroScaleDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.metroIndicator.dao.impl.MetroScaleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="metroScaleServiceImpl"
+		class="com.wonders.stpt.metroIndicator.service.impl.MetroScaleServiceImpl">
+		<property name="metroScaleDao" ref="metroScaleDaoImpl" />
+	</bean>
+	
+	<bean id="metroScaleService" parent="basicTxProxy2">
+		<property name="target" ref="metroScaleServiceImpl" />
+	</bean>
+	
+	<bean name="metroScaleAction"
+		class="com.wonders.stpt.metroIndicator.action.MetroScaleAction"
+		singleton="false">
+		<property name="metroScaleService" ref="metroScaleService"></property>	
+	</bean>
+	</beans>

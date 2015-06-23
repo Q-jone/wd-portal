@@ -1,0 +1,438 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<meta charset="utf-8" />
+<title>已办事项查询</title>
+<link rel="stylesheet" href="../css/formalize.css" />
+<link rel="stylesheet" href="../css/page.css" />
+<link rel="stylesheet" href="../css/default/imgs.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+<!--[if IE 6.0]>
+           <script src="../js/iepng.js" type="text/javascript"></script>
+           <script type="text/javascript">
+                EvPNG.fix('div, ul, ol, img, li, input, span, a, h1, h2, h3, h4, h5, h6, p, dl, dt');
+           </script>
+       <![endif]-->
+        <script src="../js/html5.js"></script>
+        <script src="../js/jquery-1.7.1.js"></script>
+		<script src="../js/jquery.formalize.js"></script>
+		<!--<script src="../js/switchDept.js"></script>-->
+		<script src="../js/show.js"></script>
+		<link type="text/css" href="../css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+		<script src="../js/flick/jquery-ui-1.8.18.custom.min.js"></script>
+		<script src="../js/flick/jquery.ui.datepicker-zh-CN.js"></script>
+		<script src="/portal/todoItem/js/jobcontact.js"></script>
+		<style type="text/css">
+        .ui-datepicker-title span {display:inline;}
+        button.ui-datepicker-current { display: none; }
+        a img{margin:0 auto;}
+        #jobContactInfo {display:none;position:absolute;width:380px;height:auto;}
+        #jobContactCuiban {display:none;position:absolute;width:150px;height:auto;}
+		.hoverTable {border:0px solid #DADCD3;background:#FBFACC;width:100%;cellpadding:0px; cellspacing:0px;text-align:center;border-collapse:collapse;}
+		.hoverTable tr td {width:0%;border:1px solid #DADCD3;text-align:middle;padding:2px;}
+		.title{ font-size:12px; color:#931602;  font-weight:bold;text-align:center;display:inline;}
+		.summary{display:block;cursor:pointer;}
+		.table_1 font,.table_1 b {display:inline;}
+		</style>
+	<script type="text/javascript"><!--
+	 //跳转到制定页
+        function goPage(pageNo,type){
+			//type=0,直接跳转到制定页
+	       if(type=="0"){
+	       		
+	       		var pageCount = $("#totalPageCount").val();
+	       		var number = $("#number").val();
+	       		if(!number.match(/^[0-9]*$/)){
+	       			alert("请输入数字");
+	       			$("#number").val($("#currentNumber").val());
+	       			$("#number").focus();
+	       			return ;
+	       		}
+	       		if(parseInt(number)>parseInt(pageCount)){
+	       			$("#number").val(pageCount);
+	       			$("#page").val(pageCount);
+	       		}else{
+	       			$("#page").val(number);
+	       		}
+	       }
+			//type=1,跳转到上一页	       
+	       if(type=="1"){
+	       		$("#page").val(parseInt($("#number").val())-1);
+	       }
+			//type=2,跳转到下一页	       
+	       if(type=="2"){
+	            //alert($("#number").val());	       		
+	       		$("#page").val(parseInt($("#number").val())+1);
+	       		//alert($("#pageNo").val());
+	       }
+	       
+	       //type=3,跳转到最后一页,或第一页
+	       if(type=="3"){
+	   	    	$("#page").val(pageNo);
+	       }
+       	   $("#form").submit();
+
+        }
+      
+		function viewXML(id){
+			sonWindow = window.open('viewProcessInfo.action?id='+id+'&rand='+Math.random());
+		}
+
+		function scan(id){
+			sonWindow = window.open('http://10.1.44.17/sLogin/workflow/TaskStatus.aspx?TaskID='+id+'&rand='+Math.random());
+		}
+		
+		function formSubmit(){
+			var status=$("#status").children('option:selected').val();	
+			var pname=$("#processname").val();	
+			if(status=="off" && (pname=='发文流程' || pname=='工作联系单')){		
+				$("#form").attr("action", "/portal/processDone/findYbxByPage.action");										
+			}else{
+				$("#page").val(1);			
+				$("#form").attr("action", "/portal/done/doneItemList.action");				
+			}			
+			return true;
+		}
+
+        $(document).ready(function () {
+        /*
+	        $('#status').change(function(){ 
+				var p1=$(this).children('option:selected').val();		
+				if(p1=="on"){		
+					var pname=$("#processname").val("");
+					if(pname!='发文流程' && pname!='工作联系单'){
+						$("#page").val(1);			
+						$("#form").attr("action", "/portal/done/doneItemList.action");
+					}
+				}else{
+					$("#form").attr("action", "/portal/processDone/findYbxByPage.action");					
+				}
+			}); 
+*/
+
+        	$(".t_c a").css("display","inline");
+            var $tbInfo = $(".filter .query input:text");
+            $tbInfo.each(function () {
+                $(this).focus(function () {
+                    $(this).attr("placeholder", "");
+                });
+            });
+			
+			var $tblAlterRow = $(".table_1 tbody tr:even");
+			if ($tblAlterRow.length > 0)
+				$tblAlterRow.css("background","#fafafa");
+					
+	        var status = '<%=request.getAttribute("status")%>';
+			if(status!=""&& status!="null"){
+				$("form:first").find("select>option[value='"+status+"']").attr("selected",true);
+			}
+  
+	        $('#starttimes').datepicker({
+	    		inline: true,  
+                changeYear: true,  
+                changeMonth: true , 
+                showButtonPanel:true,     
+                closeText:'清除',   
+                onSelect:
+                function(selectedDate){
+					$("#starttimee").datepicker("option","minDate",selectedDate);
+				},
+                
+                currentText:'ss'//仅作为“清除”按钮的判断条件  
+	    	});
+	    	$('#starttimee').datepicker({
+	    		inline: true,  
+                changeYear: true,  
+                changeMonth: true  ,  
+                showButtonPanel:true,     
+                closeText:'清除',
+                onSelect:  
+                function(selectedDate){
+					$("#starttimes").datepicker("option","maxDate",selectedDate);
+				}, 
+                currentText:'se'//仅作为“清除”按钮的判断条件  
+	    	});
+	    	$('#endtimes').datepicker({
+	    		inline: true,  
+                changeYear: true,  
+                changeMonth: true   , 
+                showButtonPanel:true,     
+                closeText:'清除',  
+                onSelect: 
+                function(selectedDate){
+					$("#endtimee").datepicker("option","minDate",selectedDate);
+				},
+                currentText:'es'//仅作为“清除”按钮的判断条件  
+	    	});
+	    	$('#endtimee').datepicker({
+	    		inline: true,  
+                changeYear: true,  
+                changeMonth: true   , 
+                showButtonPanel:true,     
+                closeText:'清除',   
+                onSelect: 
+                function(selectedDate){
+					$("#endtimes").datepicker("option","maxDate",selectedDate);
+				},
+                currentText:'ee'//仅作为“清除”按钮的判断条件  
+	    	});
+		
+			$(".ui-datepicker-close").live("click", function (){          
+              if($(this).parent("div").children("button:eq(0)").text()=="ss") $("#starttimes").val("");
+              if($(this).parent("div").children("button:eq(0)").text()=="se") $("#starttimee").val("");     
+              if($(this).parent("div").children("button:eq(0)").text()=="es") $("#endtimes").val("");
+              if($(this).parent("div").children("button:eq(0)").text()=="ee") $("#endtimee").val("");        
+              });
+						                
+		
+			$("#clearInput").click(function(){
+	      		$("#processname").val("");
+	      		$("#summary").val("");
+	      		$("#starttimes").val("");
+	      		$("#starttimee").val("");
+	      		$("#endtimes").val("");
+	      		$("#endtimee").val("");
+	      		$("#username").val("");
+	      		$("#deptname").val("");
+	      		//$("#status").val("");
+	      		$("form:first").find("select>option[value='off']").attr("selected",true);
+	      		$("#page").val("1");
+			})
+       
+       		//jobContactLoad("G00100000161","2116","李名敏","1");
+       		//jobContactLoad("G00100000161","2116","<s:property value='#session.userName'/>","1");
+			jobContactLoad("<s:property value='#session.cs_login_name'/>","<s:property value='#session.oldDeptId'/>","<s:property value='#session.userName'/>","1");
+
+       
+      })
+        
+       
+    --></script>
+
+
+
+</head>
+
+<body>
+	<div id="jobContactInfo" style="z-index:2;"></div>
+	<div id="jobContactCuiban" style="z-index:2;"></div>
+	<div class="main">
+    	<!--Ctrl-->
+		<div class="ctrl clearfix">
+			<div class="fl"><img id="show" onclick="showHide();" src="../css/default/images/sideBar_arrow_right.jpg" width="46" height="30" alt="收起"></div>
+            <div class="posi fl">
+            	<ul>
+                	<li><a href="javascript:window.location.href='/portal/center/wdsw/wd_index.jsp'">我的事务</a></li>
+                	<li class="fin">已办事项</li>
+                </ul>
+            </div>
+            <!-- div style="display:none;" class="fr lit_nav nwarp">
+            	<ul>
+                    <li class="selected"><a class="print" href="#">打印</a></li>
+                    <li><a class="express" href="#">导出数据</a></li>
+                    <li class="selected"><a class="table" href="#">表格模式</a></li>
+                    <li><a class="treeOpen" href="#">打开树</a></li>
+                    <li><a class="filterClose" href="#">关闭过滤</a></li>
+                </ul>
+            </div-->
+   		</div>
+        <!--Ctrl End-->
+      <div class="pt45">
+      <!-- div class="tabs_2">
+        	<ul>
+            	<li><a href="/portal/processInfo/findDocReceiveByPage.action" target="_blank"><span>收文查询</span></a></li>
+            	<li><a href="/portal/processInfo/findDocSendByPage.action" target="_blank" ><span>发文查询</span></a></li>        			
+        		<li><a href="/portal/processInfo/findDocDirectiveByPage.action" target="_blank"><span>呈批件查询</span></a></li>
+        		<li><a href="/portal/processInfo/findHtspOaByPage.action" target="_blank"><span>合同查询</span></a></li>
+        		<li><a href="/portal/processInfo/findJobContactByPage.action" target="_blank"><span>工作联系单查询</span></a></li>
+        		<li><a href="/portal/processInfo/findDbByPage.action" target="_blank"><span>督办查询</span></a></li>
+            </ul>
+        </div>
+	       <div class="fn clearfix" style="height:5px;background-color:#fff;"></div-->
+        <!--Filter-->
+      <div class="filter">
+        	<div class="query">
+        	<div class="p8 filter_search">
+        	<s:form action="findYbxByPage" id="form" method="post" namespace="/processDone" theme="simple">
+        	
+        	<input type="hidden" name="page" id="page" value="<s:property value="#request.page.currentPage"/>"/>
+        	
+        	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        	    <tr>
+        	      <td class="t_r">流程名称</td>
+        	      <td>
+        	      	<!-- select name="processname" id="processname" class="input_large">	
+        	      		<option value="" selected="selected">--请选择--</option>
+                    	<option value="督办流程">督办流程</option>
+                        <option value="多级工作联系单">多级工作联系单</option>
+                    	<option value="发文流程">发文流程</option>
+                        <option value="合同审批流程">合同审批流程</option>
+                        <option value="收呈批件">收呈批件</option>
+                        <option value="收文流程">收文流程</option>
+                        <option value="收文流程">收文流程</option>                        					
+                  	</select -->
+        	      <input type="text" id="processname" name="processname" class="input_large"  value="<s:property value="#request.processname"/>"/>        	      
+        	      </td>
+        	       <td class="t_r">摘要</td>
+        	      <td>
+        	      <input type="text" id="summary" name="summary" class="input_large" value="<s:property value="#request.summary"/>"/>
+        	      </td>
+        	       <td class="t_r">开始时间</td>
+        	       <td>
+        	  		<input type="text" id="starttimes" name="starttimes" class="input_large date" value="<s:property value='#request.starttimes'/>" readonly="readonly"/>
+                    -
+                    <input type="text" id="starttimee" name="starttimee" class="input_large date" value="<s:property value='#request.starttimee'/>" readonly="readonly" />
+                   </td>
+                 </tr>
+                 <tr>
+                  <td class="t_r">申请人</td>
+        	      <td>
+        	      <input type="text" id="username" name="username" class="input_large" value="<s:property value="#request.username"/>"/>
+        	      </td>
+        	       <td class="t_r">申请部门</td>
+        	       <td>
+        	  		<input type="text" id="deptname" name="deptname" class="input_large" value="<s:property value="#request.deptname"/>"/>
+        	  		</td>
+        	  		 <td class="t_r">完成时间</td>
+        	      <td>
+        	      <input type="text" id="endtimes" name="endtimes" class="input_large date" value="<s:property value='#request.endtimes'/>" readonly="readonly"/>
+                    -
+                    <input type="text" id="endtimee" name="endtimee" class="input_large date" value="<s:property value='#request.endtimee'/>" readonly="readonly" />
+                   </td>
+        	      
+      	        </tr>
+      	         <tr>
+        	  		 <td class="t_r">完成状态</td>        	 
+                      <td>
+                      	<select name="status" id="status" class="input_large">	
+                              		<option value="on">进行中</option>
+                              		<option value="off" selected="selected">已完成</option>						
+                          </select>
+                      </td>
+        	       
+      	        </tr>
+        	    <tr>
+        	      <td colspan="6" class="t_c">
+                  	<!-- input type="submit" value="检 索" onClick="return formSubmit();"/-->
+                  	<input type="submit" value="检 索" />&nbsp;&nbsp;
+                  	<input id="clearInput" type="button" value="重 置"/></td>
+				</tr>
+      	    </table>
+      	    </s:form>
+      	    </div>
+        	</div>     
+		      <div class="fn clearfix">
+		                  <h5 class="fl"><a href="#" class="fl">已办事项信息列表</a></h5>
+		             <!-- <input type="submit" name="button2" id="button2" value="新 增" class="fr"> --> 
+		            </div>
+		      </div>
+
+
+      
+        <!--Filter End-->
+      <!--Table-->
+        <div class="mb10">
+        	<table width="100%"  class="table_1">
+                              <tbody>
+                              <tr class="tit">
+                                <!-- <td><input type="checkbox" id="test_checkbox_1" name="test_checkbox_1" /></td>-->
+                                 <td class="t_c">序号</td>
+                                <!-- td class="t_c">类型</td-->
+                                <td class="t_c" >流程名称</td>
+                                <td style="width:50%;" class="t_c">摘要</td>
+                                <td class="t_c">开始时间</td>
+                                <td class="t_c">完成时间</td>
+                                <td class="t_c">申请人</td>
+                                <td class="t_c">申请部门</td>
+                                <td class="t_c">完成状态</td>
+                               	<td class="t_c">备注</td>
+                               	<td class="t_c">表单</td>
+                                <td class="t_c">监控</td>
+                                <td class="t_c">催办</td>
+                                
+                                </tr>
+                              <s:iterator value="#request.page.result" id="items" status="st">
+                              <tr>
+                              	<td class="t_c"><s:property value="#st.index+#request.page.startRow+1"/></td>
+                               	<!-- td class="t_c"><s:property value="#items.ptype" escape="0"/></td-->
+                               	<td class="t_c" nowrap="nowrap"><s:property value="#items.pname" /></td>
+                                <td><s:property value="#items.summary" escape="0"/></td>
+                                <td class="t_c"><s:date name="#items.startTime" format="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td class="t_c"><s:date name="#items.endTime" format="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td class="t_c" nowrap="nowrap"><s:property value="#items.applyUser" /></td>
+                                <td class="t_c" nowrap="nowrap"><s:property value="#items.applyDept" /></td>
+                                <td class="t_c">
+                                <s:if test='#items.status==1'>进行中</s:if>
+                                <s:else>已完成</s:else>
+                                </td>
+                                <td class="t_c"><s:property value="#items.remark" escape="0"/></td>
+                                <td class="t_c nwarp">                              
+                                	<a href="javascript:void(0);" class="todoUrl" onclick="viewXML( '<s:property value='#items.id'/>');"><img src="../css/default/images/p_open.gif"></a>                                
+                                </td>
+                                <td class="t_c nwarp">                               
+                                	<a href="javascript:void(0);" class="todoScan" onclick="scan('<s:property value='#items.taskid'/>');"><img src="../css/default/images/p_but9.gif"></a>
+                                </td>
+                                <td class="t_c nwarp">
+                                	<a href="javascript:void(0);" class="todoUrge" onclick="javascript:alert('该流程已结束！');"><img src="../css/default/images/p_task_exp.gif"></a>                                
+                                </td>
+                                </tr>
+                                </s:iterator>
+                              </tbody>
+                              <tr class="tfoot">
+                                <td colspan="12"><div class="clearfix"><span class="fl">共<s:property value="#request.page.totalRows"/>条记录</span>
+                           		<ul class="fr clearfix pager">
+		                             <li>Pages:<s:property value="#request.page.currentPage"/>/<s:property value="#request.page.totalPages"/>
+		                             		<input type="hidden" value="<s:property value='#request.page.totalPages'/>" id="totalPageCount">
+		                             		<input type="hidden" value="<s:property value='#request.page.currentPage'/>" id="currentNumber">
+			                                  <input type="text" id="number" name="pageNumber" min="0" max="999" step="1" class="input_tiny" value="<s:property value='#request.page.currentPage'/>"/>
+			                                  <input type="button" name="button" id="button" value="Go" onclick="goPage(0,0)">
+		                             </li>
+                             
+		                             <s:if test="#request.page.currentPage==#request.page.totalPages">
+		                             <li><a href="javascript:void(0)">&gt;&gt;</a></li>
+		                             </s:if>
+		                             <s:else>
+		                              <li><a href="javascript:void(0)" onclick="goPage(<s:property value='#request.page.totalPages'/>,3)">&gt;&gt;</a></li>
+		                             </s:else>
+                              
+	                             	<li>
+	                             	<s:if test="#request.page.currentPage==#request.page.totalPages">	
+	                             		<a href="javascript:void(0)">下一页</a>
+	                             	</s:if>
+	                             	<s:else>
+	                             		<a href="javascript:void(0)" onclick="goPage(<s:property value='#request.page.currentPage'/>,2)">下一页</a>
+	                             	</s:else>
+	                             	</li>
+	                             	<li>
+	                             	<s:if test="#request.page.currentPage==1">
+	                             		<a href="javascript:void(0)">上一页</a>
+	                             	</s:if>
+	                             	<s:else>
+	                             		<a href="javascript:void(0)" onclick="goPage(<s:property value='#request.page.currentPage'/>,1)">上一页</a>
+	                             	</s:else>
+	                             	
+	                             	</li> 
+	                             
+	                             	<s:if test="#request.page.currentPage==1">
+	                             	<li><a href="javascript:void(0)">&lt;&lt;</a></li>
+	                             	</s:if>
+	                             	<s:else>
+	                             		<li><a href="javascript:void(0)" onclick="goPage(1,3)">&lt;&lt;</a></li>
+	                             	</s:else>
+	                             
+                                
+                            </ul>
+                        </div>
+                                </td>
+                              </tr>
+                            </table>
+
+      </div>
+        <!--Table End-->
+</div>
+</div>
+</body>
+</html>

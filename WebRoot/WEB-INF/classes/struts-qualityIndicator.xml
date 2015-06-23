@@ -1,0 +1,31 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="qualityIndicator" namespace="/operationIndicator" extends="cuteframework-default">
+		<!-- 跳转页面 -->
+		<action name="showQualityListPage" class="qualityIndicatorAction" method="showQualityListPage">
+			<result name="showQualityListPage">/operationIndicator/listQuality.jsp</result>
+		</action>
+		<!-- 查询图表数据quality -->
+		<action name="findChartDataQuality" class="qualityIndicatorAction" method="findChartDataQuality"/>
+		
+		
+		<!-- 查询图表数据quality月视图 -->
+		<action name="findChartDataQualityByMonth" class="qualityIndicatorAction" method="findChartDataQualityByMonth"/>
+		<!-- 查询图表数据quality年视图 -->
+		<action name="findChartDataQualityByYear" class="qualityIndicatorAction" method="findChartDataQualityByYear"/>
+		
+		<!-- 跳转到详细页面 -->
+		<action name="showQualityDetailPage" class="qualityIndicatorAction" method="showQualityDetailPage">
+			<result name="chart8">/operationIndicator/chart8.jsp</result>
+			<result name="chart9">/operationIndicator/chart9.jsp</result>
+		</action>
+		
+		
+		<!-- 查询时间段之间数据-->
+		<action name="findQualityBetweenDays" class="qualityIndicatorAction" method="findQualityBetweenDays"/>
+		
+	</package>
+</struts>
+	

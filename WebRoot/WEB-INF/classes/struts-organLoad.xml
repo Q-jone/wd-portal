@@ -1,0 +1,52 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="organLoad" namespace="/organTree" extends="cuteframework-default">
+		<action name="loadTreeForUser" class="organLoadAction" method="loadTreeForUser">
+		</action>
+		
+		<action name="loadTreeForUserAll" class="organLoadAction" method="loadTreeForUserAll">
+		</action>
+		
+		<action name="loadTreeForDept" class="organLoadAction" method="loadTreeForDept">
+		</action>
+		
+		<action name="loadTreeForDeptAll" class="organLoadAction" method="loadTreeForDeptAll">
+		</action>
+		
+		<action name="getDeptRelation" class="organLoadAction" method="getDeptRelation">
+		</action>
+		
+		<action name="generatePrimeData" class="organLoadAction" method="generatePrimeData">
+		</action>
+		
+		<action name="getZtreeNodes" class="organLoadAction" method="getZtreeNodes">
+		</action>
+		
+		<action name="getNodesInfo" class="organLoadAction" method="getNodesInfo">
+		</action>
+		
+		<action name="getRelatedNodes" class="organLoadAction" method="getRelatedNodes">
+		</action>
+		
+		<action name="getChildNodes" class="organLoadAction" method="getChildNodes">
+		</action>
+		
+		<action name="getDeptLeaders" class="organLoadAction" method="getDeptLeaders">
+		</action>
+		
+		<action name="getDeptSingleLeader" class="organLoadAction" method="getDeptSingleLeader">
+		</action>
+		
+		<action name="getDeptReceivers" class="organLoadAction" method="getDeptReceivers">
+		</action>
+		
+		<action name="getDeptUsers" class="organLoadAction" method="getDeptUsers">
+		</action>
+		
+		<action name="getDeptUsersOffLeaders" class="organLoadAction" method="getDeptUsersOffLeaders">
+		</action>
+	</package>
+</struts>
+	

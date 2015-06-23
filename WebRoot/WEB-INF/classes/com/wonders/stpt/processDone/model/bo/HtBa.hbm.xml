@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.wonders.stpt.processDone.model.bo.HtBa"
+        table="HT_BA"
+        dynamic-update="true"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+                <param name="sequence">SEQ_HT_BA</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-HtBa.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+		<property
+            name="htId"
+            type="long"
+            update="true"
+            insert="true"
+            column="HT_ID"
+            length="200"
+        />
+        
+        <property
+            name="examinePassTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="EXAMINE_PASS_TIME"
+            length="200"
+        />
+        
+        <property
+            name="contractSignTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTRACT_SIGN_TIME"
+            length="200"
+        />
+        
+        <property
+            name="performTimelimit"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PERFORM_TIMELIMIT"
+            length="200"
+        />
+        
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REMARK"
+            length="200"
+        />
+        
+        <property
+            name="ifSame"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ATTR1"
+            length="200"
+        />
+
+    </class>
+
+</hibernate-mapping>

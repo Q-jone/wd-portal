@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="mscp" namespace="/mscp" extends="cuteframework-default">
+		
+		<action name="findMscpInfo" class="mscpAction" method="findMscpInfo"/>
+
+		<action name="findOrganizationTrade" class="mscpAction" method="findOrganizationTrade"/>
+		
+		<action name="findSupplyBid" class="mscpAction" method="findSupplyBid"/>
+		<action name="findPortalVisit" class="mscpAction" method="findPortalVisit"/>
+		<action name="findMonthVisit" class="mscpAction" method="findMonthVisit"/>
+		<action name="findMonthNotice" class="mscpAction" method="findMonthNotice"/>
+		<action name="findTotalBid" class="mscpAction" method="findTotalBid"/>
+		 
+		<action name="findMonthBid" class="mscpAction" method="findMonthBid"/>
+		<action name="findMscpExpertStat" class="mscpAction" method="findMscpExpertStat"/>
+		<action name="findMonthBidByMonth" class="mscpAction" method="findMonthBidByMonth"/>
+		<action name="showSupplierNum" class="mscpAction" method="showSupplierNum"/>
+		<action name="findMscpMonthSupplierStatSumByMonth" class="mscpAction" method="findMscpMonthSupplierStatSumByMonth"/>
+		<action name="findMscpAlarmStat" class="mscpAction" method="findMscpAlarmStat"/>
+	</package>
+</struts>
+	

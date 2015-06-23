@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.wonders.stpt.processDone.model.bo.HtXx"
+        table="HT_XX"
+        dynamic-update="true"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+                <param name="sequence">SEQ_HT_XX</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-ProjectApprovalApply.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="AddDate"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ADD_TIME"
+            length="200"
+        />
+        
+        <property
+            name="AddPerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ADD_PERSON"
+            length="200"
+        />
+        
+        <property
+            name="ContractMoney"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTRACT_MONEY"
+            length="200"
+        />
+        
+        <property
+            name="ContractMoneyType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTRACT_MONEY_TYPE"
+            length="200"
+        />
+        
+        <property
+            name="ContractName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTRACT_NAME"
+            length="200"
+        />
+        
+        <property
+            name="DelegatePerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTRACT_NAME1"
+            length="200"
+        />
+        
+        <property
+            name="ContractNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTRACT_NUM"
+            length="200"
+        />
+        
+        <property
+            name="DealDeptSuggest"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DEAL_DEP_SUGGEST"
+            length="2000"
+        />
+        
+        <property
+            name="DealPerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DEAL_PERSON"
+            length="200"
+        />
+        
+        <property
+            name="ModelId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="MODEL_ID"
+            length="200"
+        />
+        
+        <property
+            name="PinstanceId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PINSTANCE_ID"
+            length="200"
+        />
+        
+        <property
+            name="PlanNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PLAN_NUM"
+            length="200"
+        />
+        
+        <property
+            name="ProjectCOName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PROJECT_CO_NAME"
+            length="200"
+        />
+        
+        <property
+            name="ProjectNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PROJECT_NUM"
+            length="200"
+        />
+        
+        <property
+            name="Remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REMARK"
+            length="2000"
+        />
+        
+        <property
+            name="SelfNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SELF_NUM"
+            length="200"
+        />
+        
+        <property
+            name="FileNum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FILE_NUM"
+            length="200"
+        />
+        
+        <property
+            name="SignCop"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SIGN_COP"
+            length="200"
+        />
+
+		<property
+            name="Budget"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="BUDGET"
+            length="200"
+        />
+        
+        <property
+            name="HtAttach"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="HT_ATTACH"
+            length="100"
+        />
+    </class>
+
+</hibernate-mapping>

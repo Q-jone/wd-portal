@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.wonders.stpt.processDone.model.bo.ReDirective"
+        table="T_RECEIVE_DIRECTIVE"
+        dynamic-update="true"
+    >
+
+        <id name="id" type="string">
+            <column name="ID" length="50" />
+            <generator class="uuid.hex">
+        	</generator>
+        </id>          
+
+        <property name="submitdept" type="string">
+            <column name="SUBMITDEPT" length="1000" />
+        </property>
+        <property name="submitdate" type="string">
+            <column name="SUBMITDATE" length="38" />
+        </property>
+        <property name="deptid" type="string">
+            <column name="DEPTID" length="50" />
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="200" />
+        </property>
+        <property name="content" type="string">
+            <column name="CONTENT" length="4000" />
+        </property>
+        <property name="operator" type="string">
+            <column name="OPERATOR" length="100" />
+        </property>
+        <property name="deptmaster" type="string">
+            <column name="DEPTMASTER" length="100" />
+        </property>
+        <property name="nbopinion" type="string">
+            <column name="NBOPINION" length="200" />
+        </property>
+        <property name="deptopinion" type="string">
+            <column name="DEPTOPINION" length="1000" />
+        </property>
+        <property name="leaderopinion" type="string">
+            <column name="LEADEROPINION" length="1000" />
+        </property>
+        <property name="chairmanopinion" type="string">
+            <column name="CHAIRMANOPINION" length="1000" />
+        </property>
+        <property name="handle" type="string">
+            <column name="HANDLE" length="1000" />
+        </property>
+        <property name="processinstanceid" type="string">
+            <column name="PROCESSINSTANCEID" length="50" />
+        </property>
+        <property name="activeid" type="string">
+            <column name="ACTIVEID" length="50" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="50" />
+        </property>
+        <property name="doclevel" type="string">
+            <column name="DOCLEVEL" length="20" />
+        </property>
+        <property name="keyword" type="string">
+            <column name="KEYWORD" length="200" />
+        </property>
+        <property name="attach" type="string">
+            <column name="ATTACH" length="4000" />
+        </property>
+        <property name="theme" type="string">
+            <column name="THEME" length="200" />
+        </property>
+        <property name="zdept" type="string">
+            <column name="ZDEPT" length="200" />
+        </property>
+        <property name="xdept" type="string">
+            <column name="XDEPT" length="200" />
+        </property>
+        <property name="zleader" type="string">
+            <column name="ZLEADER" length="200" />
+        </property>
+        <property name="fleader" type="string">
+            <column name="FLEADER" length="200" />
+        </property>
+        <property name="zbopinion" type="string">
+            <column name="ZBOPINION" length="1000" />
+        </property>
+        <property name="xbopinion" type="string">
+            <column name="XBOPINION" length="1000" />
+        </property>
+        <property name="pbopinion" type="string">
+            <column name="PBOPINION" length="1000" />
+        </property>
+        <property name="workitemid" type="string">
+            <column name="WORKITEMID" length="100" />
+        </property>
+        <property name="saved" type="string">
+            <column name="SAVED" length="200" />
+        </property>
+        <property name="receivePerson" type="string">
+            <column name="RECEIVE_PERSON" length="200" />
+        </property>
+        <property name="receiveDept" type="string">
+            <column name="RECEIVE_DEPT" length="200" />
+        </property>
+        <property name="xdeptamount" type="string">
+            <column name="XDEPTAMOUNT" length="200" />
+        </property>
+        <property name="attachs" type="string">
+            <column name="ATTACHS" length="4000" />
+        </property>
+        <property name="taskid" type="string">
+            <column name="TASKID" length="200" />
+        </property>
+         <property name="operateTime" type="string">
+            <column name="OPERATE_TIME" length="200" />
+        </property>
+         <property name="removed" type="string">
+            <column name="removed" length="200" />
+        </property>
+         <property name="flag" type="string">
+            <column name="flag" length="20" />
+        </property>
+        <property
+            name="personName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PERSONNAME"
+            length="4000"
+        />
+        
+        <property
+            name="redattach"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DEALFILE"
+            length="4000"
+        />
+        
+         <property
+            name="chiefPerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CHIEF_PERSON"
+            length="200"
+        />
+        
+         <property
+            name="typeTitle"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TYPE_TITLE"
+            length="200"
+        />
+        
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Directive.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

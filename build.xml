@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="${project.name}" default="war" basedir=".">
+
+	<property name="xdoclet.root.dir" value="${basedir}" />
+	<property file="build-dist.properties" />
+
+	<!-- =================================================================== -->
+	<!-- Define the class path                                               -->
+	<!-- =================================================================== -->
+	<path id="project.class.path">
+		<fileset dir="${project.lib.dir}">
+			<exclude name="**/asm-2.2.1.jar" />
+		</fileset>
+	</path>
+
+	<path id="project.test.class.path">
+		<fileset dir="${project.lib.dir}">
+			<include name="**/*.jar" />
+			<include name="cobertura-1.8.jar" />
+			<exclude name="**/asm.jar" />
+		</fileset>
+	</path>
+
+	<!-- =================================================================== -->
+	<!-- Initialize                                                          -->
+	<!-- =================================================================== -->
+	<target name="init">
+		<taskdef name="hibernatedoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask" classpathref="project.class.path" />
+		<taskdef name="schemaexport" classname="org.hibernate.tool.hbm2ddl.SchemaExportTask" classpathref="project.class.path" />
+		<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask">
+			<classpath refid="project.class.path">
+			</classpath>
+			<classpath location="${project.classes.dir}">
+			</classpath>
+			<classpath location="${project.classes.dir}">
+			</classpath>
+		</taskdef>
+		<taskdef name="instrument" classname="org.hibernate.tool.instrument.javassist.InstrumentTask" classpathref="project.class.path" />
+		<taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask" classpathref="project.class.path" />
+		<taskdef classpathref="project.test.class.path" resource="tasks.properties" />
+		<taskdef resource="checkstyletask.properties" classpathref="project.class.path" />
+		<taskdef name="scaffold" classname="com.wondersgroup.framework.core.scaffold.client.ScaffoldTask">
+			<classpath refid="project.class.path">
+			</classpath>
+			<classpath location="${project.classes.dir}">
+			</classpath>
+		</taskdef>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Prepares the directory structure                                    -->
+	<!-- =================================================================== -->
+	<target name="prepare" depends="init">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| P R E P A R E                                     |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<mkdir dir="${project.dist.dir}" />
+		<mkdir dir="${project.doc.dir}" />
+		<mkdir dir="${project.doc.dir}/javadoc" />
+		<mkdir dir="${project.reports.xml.dir}" />
+		<mkdir dir="${project.reports.html.dir}" />
+		<mkdir dir="${project.coverage.xml.dir}" />
+		<mkdir dir="${project.coverage.html.dir}" />
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- Invoke XDoclet's hibernate                                          -->
+	<!-- =================================================================== -->
+	<target name="hibernate.doclet" depends="prepare" description="build hbm files from xdoclet in bo">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| R U N N I N G   H I B E R N A T E D O C L E T     |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<delete>
+			<fileset dir="${project.classes.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</delete>
+
+		<hibernatedoclet destdir="${project.classes.dir}" mergedir="${project.java.dir}" excludedtags="@version,@author,@todo,@see" addedtags="@xdoclet-generated at ${TODAY},@copyright The XDoclet Team,@author XDoclet,@version ${version}" verbose="false">
+			<fileset dir="${project.java.dir}">
+				<include name="com/wondersgroup/**/bo/*.java" />
+			</fileset>
+			<hibernate version="3.0" />
+		</hibernatedoclet>
+
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- Hibernate Schema 基于annotation                                     -->
+	<!-- =================================================================== -->
+	<target name="schema.export" depends="init, compile" description="Exports a generated schema to DB and file">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| H I B E R N A T E   S C H E M A                   |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<hibernatetool destdir="${project.sql.dir}/${dbName}">
+			<annotationconfiguration configurationfile="${project.classes.dir}/hibernate.cfg.xml" propertyfile="${project.classes.dir}/database.properties" />
+			<hbm2ddl drop="true" create="true" export="true" outputfilename="project-schema.sql" delimiter=";" format="true" />
+		</hibernatetool>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Hibernate Schema 基于hbm文件                                        -->
+	<!-- =================================================================== -->
+	<target name="hibernate.schema" depends="compile" description="build ddl from hbm files">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| H I B E R N A T E   S C H E M A                   |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<schemaexport properties="${project.classes.dir}/database.properties" quiet="no" text="no" drop="no" delimiter=";" 
+			output="${project.sql.dir}/${dbName}/project-schema.sql">
+			<fileset dir="${project.classes.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</schemaexport>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compiles all the classes                                            -->
+	<!-- =================================================================== -->
+	<target name="compile" depends="hibernate.doclet">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| C O M P I L I N G   S O U R C E S                 |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<javac destdir="${project.classes.dir}" classpathref="project.class.path" debug="on" deprecation="on" optimize="off" encoding="UTF-8">
+			<src path="${project.java.dir}" />
+			<src path="${project.test.dir}" />
+		</javac>
+
+		<copy todir="${project.classes.dir}">
+			<fileset dir="${project.java.dir}">
+				<include name="**/*.xml" />
+				<include name="**/*.properties" />
+				<include name="**/*.config" />
+			</fileset>
+		</copy>
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- War Build                                                           -->
+	<!-- =================================================================== -->
+	<target name="war" depends="prepare,compile,sql.import,junit.test" description="Build the web application archive">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| W A R   F I L E   B U I L D                       |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<delete file="${project.dist.dir}/${project.name}.war" failonerror="false" />
+		<war encoding="UTF-8" warfile="${project.dist.dir}/${project.name}.war" webxml="${project.web-inf.dir}/web.xml" basedir="${project.webapp.dir}">
+			<lib dir="${project.lib.running.dir}" />
+			<lib dir="${project.lib.jdbc.dir}" />
+		</war>
+		<copy file="${project.dist.dir}/${project.name}.war" todir="${project.web-deploy.dir}" />
+	</target>
+
+	<target name="sql.import">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| S Q L   I M P O R T                               |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<sql classpathref="project.class.path" driver="${hibernate.connection.driver_class}" url="${hibernate.connection.url}" userid="${hibernate.connection.username}" password="${hibernate.connection.password}" onerror="continue" encoding="UTF-8">
+			<transaction src="${project.sql.dir}/${dbName}/0_schema-export.sql" />
+			<transaction src="${project.sql.dir}/${dbName}/1_sequence.sql" />
+			<transaction src="${project.sql.dir}/${dbName}/2_init_data.sql" />
+			<transaction src="${project.sql.dir}/${dbName}/project-schema.sql" />
+		</sql>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Cobertura Cover Test                                                -->
+	<!-- =================================================================== -->
+	<target name="junit.test" depends="sql.import,instrument" description="Run all junit tests">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| J U N I T  T E S T                                |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<junit fork="yes" printsummary="yes" haltonerror="yes" haltonfailure="no">
+
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${project.dir}/cobertura.ser" />
+
+			<classpath location="${project.coverage.instrument}" />
+			<classpath location="${project.classes.dir}" />
+			<classpath refid="project.class.path" />
+
+			<formatter type="xml" />
+			<test name="unit-test" todir="${project.reports.xml.dir}" if="testcase" />
+			<batchtest todir="${project.reports.xml.dir}">
+				<fileset dir="${project.test.dir}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+
+		<junitreport todir="${project.reports.xml.dir}">
+			<fileset dir="${project.reports.xml.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${project.reports.html.dir}" />
+		</junitreport>
+
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- Cobertura Instrument Test                                           -->
+	<!-- =================================================================== -->
+	<target name="instrument" depends="prepare">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| I N S T R U M E N T  S E T T I N G                |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<taskdef classpathref="project.test.class.path" resource="tasks.properties" />
+		<cobertura-instrument todir="${project.coverage.instrument}">
+			<classpath refid="project.test.class.path" />
+			<ignore regex="org.apache.log4j.*" />
+			<fileset dir="${project.classes.dir}">
+				<include name="**/*.class" />
+				<exclude name="**/*Test.class" />
+			</fileset>
+		</cobertura-instrument>
+
+		<copy todir="${project.coverage.instrument}">
+			<fileset dir="${project.classes.dir}" />
+		</copy>
+	</target>
+
+	<target name="coverage-check">
+		<cobertura-check branchrate="34" totallinerate="100" />
+	</target>
+
+	<target name="coverage-report" depends="junit.test">
+		<cobertura-report srcdir="${project.test.dir}" destdir="${project.coverage.xml.dir}" format="xml" />
+	</target>
+
+	<target name="test.report" depends="coverage-report">
+		<cobertura-report destdir="${project.coverage.html.dir}">
+			<fileset dir="${project.java.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</cobertura-report>
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- Scaffold                                                            -->
+	<!-- =================================================================== -->
+	<target name="scaffold" depends="init">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| SCAFFOLD                                          |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<scaffold overwrite="false" strategy="hibernate" springFile="${springFile}" baseDir="${project.java.dir}" hibernatefile="${hibernateFile}" baseTestDir="${project.test.dir}" tiger="true" packageName="${packageName}" businessName="${businessName}">
+		</scaffold>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Clean                                                               -->
+	<!-- =================================================================== -->
+	<target name="clean">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| C L E A N  P R O J E C T                          |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<delete file="${project.dir}/cobertura.ser" />
+
+		<delete file="${project.dist.dir}/${project.name}.war" />
+		<delete dir="${project.doc.dir}" />
+		<delete includeemptydirs="true">
+			<fileset dir="${project.classes.dir}">
+				<include name="**/*" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Main                                                                -->
+	<!-- =================================================================== -->
+	<target name="main" depends="schema.export,sql.import,war">
+		<echo>Distributable under GNU LGPL license by gun.org</echo>
+	</target>
+
+</project>

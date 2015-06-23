@@ -1,0 +1,43 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="MetroProductionControl" namespace="/indicatorControl" extends="cuteframework-default">
+		<!-- 跳转到list页面 -->
+		<action name="showProductionControlPage" class="metroProductionControlAction" method="showProductionControlPage">
+			<result name="showProductionControlPage">/operationIndicator/productionControlList.jsp</result>
+		</action>
+		
+		<!-- 跳转到添加页面 -->
+		<action name="showProductionControlAddPage" class="metroProductionControlAction" method="showProductionControlAddPage">
+			<result name="showProductionControlAddPage">/operationIndicator/productionControlAdd.jsp</result>
+		</action>
+		
+		<!-- 保存更新 -->
+		<action name="saveProductionControl" class="metroProductionControlAction" method="saveProductionControl">
+			<result name="saveProductionControl">/operationIndicator/success.jsp</result>
+			<result name="fail">/operationIndicator/productionControlAdd.jsp</result>
+		</action>
+		
+		<!-- 跳转到详细页面-->
+		<action name="showProductionControlDetailPage" class="metroProductionControlAction" method="showProductionControlDetailPage">
+			<result name="showProductionControlDetailPage">/operationIndicator/productionControlView.jsp</result>
+		</action>
+		
+		<!-- 跳转到编辑页面 -->
+		<action name="showProductionControlEditPage" class="metroProductionControlAction" method="showProductionControlEditPage">
+			<result name="showProductionControlEditPage">/operationIndicator/productionControlEdit.jsp</result>
+		</action>
+		
+		<!-- 保存更新-->
+		<action name="updateProductionEditPage" class="metroProductionControlAction" method="updateProductionEditPage">
+			<result name="updateProductionEditPage">/operationIndicator/success.jsp</result>
+		</action>
+		
+		<!-- 删除-->
+		<action name="deleteProductionControl" class="metroProductionControlAction" method="deleteProductionControl"/>
+		
+		
+	</package>
+</struts>
+	

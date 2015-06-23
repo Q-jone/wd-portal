@@ -1,0 +1,11 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="domainCross" namespace="/service" extends="cuteframework-default">
+		<action name="getSession" class="domainCrossAction" method="getSessionInfo"/>
+		<action name="getDeptLeaders" class="domainCrossAction" method="getDeptLeaders"/>
+		<action name="test" class="domainCrossAction" method="test"/>
+	</package>
+</struts>
+	

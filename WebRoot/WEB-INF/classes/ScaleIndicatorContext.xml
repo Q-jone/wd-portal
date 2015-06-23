@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--scale  -->
+	
+	<bean name="scaleIndicatorAction" class="com.wonders.stpt.operationIndicator.action.ScaleIndicatorAction" singleton="false">
+		<property name="scaleService" ref="metroScaleService"></property>
+		<property name="expressService" ref="metroExpressService"></property>
+	</bean>
+	
+	
+</beans>

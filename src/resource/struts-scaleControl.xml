@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="MetroScaleControl" namespace="/indicatorControl" extends="cuteframework-default">
+	
+		<!-- 跳转到list页面 -->
+		<action name="showScaleControlPage" class="metroScaleControlAction" method="showScaleControlPage">
+			<result name="showScaleControlPage">/operationIndicator/scaleControlList.jsp</result>
+		</action>
+		
+
+	</package>
+</struts>
+	

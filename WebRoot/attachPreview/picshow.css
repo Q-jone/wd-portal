@@ -1,0 +1,120 @@
+body {
+	margin: 0;
+	background: #F3F3F3;
+	padding: 5px;
+	font-family: ËÎÌו;
+	font-size: 12px;
+	color: #000000;
+	overflow: hidden;
+	height: 100%;
+}
+
+html {
+	overflow: hidden;
+	height: 100%;
+}
+
+#gallery {
+	width: 98%;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+	border: 0px solid;
+	font-family: verdana, arial, sans-serif;
+}
+
+#gallery #fullsize {
+	position: relative;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+#gallery #fullsize div {
+	padding-top: 10px;
+	position: relative;
+}
+
+#gallery #fullsize div img {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+	border: 0;
+}
+
+.controlbar-embedded {
+	line-height: 0;
+	border: 0;
+	border-bottom: 1px #bbb solid;
+	background: #ddd url("../images/button_bg.png") repeat-x scroll left top;
+	width: 100%;
+}
+
+.goog-inline-block {
+	position: relative;
+	display: inline-block;
+}
+
+* html .goog-inline-block {
+	display: inline;
+}
+
+* :first-child+html .goog-inline-block {
+	display: inline;
+}
+
+.controlbar-controls {
+	vertical-align: top;
+}
+
+.controlbar-image {
+	background-image: url("../images/controlbar_icon_sprites_1.png");
+	background-repeat: no-repeat;
+	background-color: transparent;
+	margin: 3px 5px;
+	height: 16px;
+	width: 16px;
+}
+
+.controlbar-forward-image,.rtl .controlbar-back-image {
+	background-position: -16px;
+}
+
+.controlbar-back-image,.rtl .controlbar-forward-image {
+	background-position: -1px;
+}
+
+.controlbar-minus-image {
+	background-position: -48px;
+}
+
+.controlbar-plus-image {
+	background-position: -64px;
+}
+
+.controlbar-item {
+	padding-top: 1px;
+	vertical-align: top;
+}
+
+.controlbar-pager-page-number {
+	text-align: right;
+	width: 5em;
+	padding: 4px;
+	font-size: 12px;
+	line-height: 12px;
+	color: #000;
+}
+
+.goog-custom-button {
+	background: #ddd url("../images/button_bg.png") repeat-x scroll left top;
+	cursor: pointer;
+	-moz-user-select: none;
+}
+
+.FixedTitleRow {
+	position: relative;
+	top: expression(this . offsetParent . scrollTop);
+	z-index: 10;
+}

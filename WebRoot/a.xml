@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="gbk" standalone="yes"?>
+<root date="2014-12-12" type="opSend">
+    <Datas>
+        <BasicData>
+            <!--主键-->
+            <id>8a81ac8f3f9f51cc013fadf1d94a0855</id>
+            <!--文件分类-->
+            <fileType></fileType>
+            <!--文件字号-->
+            <fileCode></fileCode>
+            <!--标题-->
+            <docTitle>上海轨道交通电动列车故障救援演练总体方案</docTitle>
+            <!--发放范围-->
+            <sendMainW></sendMainW>
+            <!--外发单位-->
+            <sendOutW></sendOutW>
+            <!--文件内容<br>涉及线路/<br>OCC/专业<br>单位参考-->
+            <sendLineW></sendLineW>
+            <!--起草日期-->
+            <applyDate></applyDate>
+            <!--发布日期-->
+            <pubDate></pubDate>
+            <!--有效日期-->
+            <validDate></validDate>
+            <!--发文日期-->
+            <passDate></passDate>
+            <attMain>
+                <!--运营发文的红头文件，格式同普通附件-->
+                <attachFileList>
+                    <attachFile>
+                        <fileName>上海轨道交通电动列车故障救援演练总体方案</fileName>
+                        <fileExtName>pdf</fileExtName>
+                        <path><![CDATA[http://10.1.44.18/downloadFile.action?fileId=77906]]></path>
+                    </attachFile>
+                </attachFileList>
+            </attMain>
+
+        </BasicData>
+    </Datas>
+</root>

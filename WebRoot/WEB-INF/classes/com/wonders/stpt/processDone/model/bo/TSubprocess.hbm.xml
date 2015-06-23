@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.wonders.stpt.processDone.model.bo.TSubprocess"
+        table="T_SUBPROCESS"
+        dynamic-update="true"
+    >
+		<id name="guid" type="string">
+            <column name="guid" length="50" />
+            <generator class="uuid.hex">
+        	</generator>
+        </id>
+        <property name="pname" type="string">
+            <column name="pname" length="50" />
+        </property>
+        <property name="pincident" type="string">
+            <column name="pincident" length="50" />
+        </property>
+        <property name="cname" type="string">
+            <column name="cname" length="50" />
+        </property>
+        <property name="cincident" type="string">
+            <column name="cincident" length="50" />
+        </property>
+    </class>
+
+</hibernate-mapping>

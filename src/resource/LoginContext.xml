@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--LOGIN Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean name="login" class="com.wonders.stpt.core.login.action.LoginAction"
+		singleton="false">
+		<property name="authenticationService"
+			ref="authenticationService" />
+		<property name="userService" ref="userService" />
+		<property name="menuService" ref="menuService" />
+		<property name="organNodeService" ref="organNodeService" />
+		<property name="organTreeService" ref="organTreeService" />
+		<property name="tuserService" ref="tuserService" />
+		<property name="domainAuthenticationService" ref="domainAuthenticationService" />
+	</bean>
+			
+	<bean name="testerLoginAction" class="com.wonders.stpt.core.login.action.TesterLoginAction"
+		singleton="false">
+		<property name="authenticationService"
+			ref="authenticationService" />
+		<property name="userService" ref="userService" />
+		<property name="menuService" ref="menuService" />
+		<property name="organNodeService" ref="organNodeService" />
+		<property name="organTreeService" ref="organTreeService" />
+		<property name="tuserService" ref="tuserService" />
+		<property name="domainAuthenticationService" ref="domainAuthenticationService" />
+	</bean>
+	</beans>

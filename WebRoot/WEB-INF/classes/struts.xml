@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="custom-default" extends="struts-default">
+        <!-- 定义一个拦截器 -->
+        <interceptors>
+            <interceptor name="authority"
+                         class="com.wonders.stpt.contractReview.interceptor.AuthInterceptor">
+            </interceptor>
+            <interceptor name="validAuthority"
+                         class="com.wonders.stpt.validFile.interceptor.AuthInterceptor">
+            </interceptor>
+
+            <!-- 拦截器栈 -->
+            <interceptor-stack name="mydefault">
+                <interceptor-ref name="authority"/>
+                <interceptor-ref name="defaultStack"/>
+
+            </interceptor-stack>
+
+
+            <!-- 拦截器栈 -->
+            <interceptor-stack name="myValid">
+                <interceptor-ref name="validAuthority"/>
+                <interceptor-ref name="defaultStack"/>
+
+            </interceptor-stack>
+        </interceptors>
+
+        <global-results>
+            <result name="error">/error.jsp</result>
+            <result name="no_authority_json">/no_authority_json.json</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+        </global-exception-mappings>
+
+    </package>
+    <constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>
+    <constant name="struts.multipart.maxSize" value="25242880"/>
+    <constant name="struts.custom.i18n.resources" value="fileUpload"></constant>
+
+    <package name="default" extends="cuteframework-default"/>
+    <include file="struts-metroExpress.xml"/>
+    <include file="struts-metroProduction.xml"/>
+    <include file="struts-metroQuality.xml"/>
+    <include file="struts-metroScale.xml"/>
+    <include file="struts-metroIndicator.xml"/>
+    <include file="struts-infoSearch.xml"/>
+    <!--<include file="struts-login.xml"/>  -->
+    <include file="struts-organLoad.xml"/>
+    <include file="struts-metroLine.xml"/>
+    <include file="struts-constructionNotice.xml"/>
+    <include file="struts-domainCross.xml"/>
+    <include file="struts-productionControl.xml"/>
+    <include file="struts-productionIndicator.xml"/>
+    <include file="struts-qualityControl.xml"/>
+    <include file="struts-qualityIndicator.xml"/>
+    <include file="struts-scaleControl.xml"/>
+    <include file="struts-scaleIndicator.xml"/>
+    <!--<include file="struts-userManage.xml"/> -->
+    <include file="struts-dJinfoSearch.xml"/>
+    <include file="struts-moreInfoSearch.xml"/>
+    <include file="struts-section.xml"/>
+    <include file="struts-jeecms.xml"/>
+    <include file="struts-processInfo.xml"/>
+
+    <include file="struts-mscp.xml"/>
+</struts>

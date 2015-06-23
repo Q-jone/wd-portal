@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--organ Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean name="organLoadAction" class="com.wonders.stpt.organTree.action.OrganLoadAction"
+		singleton="true">
+		<property name="userService" ref="userService" />
+		<property name="organNodeService" ref="organNodeService" />
+		<property name="organTreeService" ref="organTreeService" />
+		<property name="torganRelationService" ref="torganRelationService" />
+	</bean>
+	</beans>

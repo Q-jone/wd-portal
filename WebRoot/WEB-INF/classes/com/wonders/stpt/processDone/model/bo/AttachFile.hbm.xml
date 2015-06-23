@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wonders.stpt.processDone.model.bo.AttachFile2"
+		table="T_ATTACH" dynamic-update="true">
+
+		<id name="id" column="ID" type="long" unsaved-value="0">
+			<generator class="native">
+				<param name="sequence">SEQ_ATTACH</param>
+			</generator>
+		</id>
+		<property name="fileName" type="java.lang.String" update="true"
+			insert="true" column="FILENAME" length="50" />
+		<property name="fileExtName" type="java.lang.String" update="true"
+			insert="true" column="FILEEXTNAME" length="10" />
+		<property name="saveFileName" type="java.lang.String" update="true"
+			insert="true" column="SAVEFILENAME" length="50" />
+		<property name="path" type="java.lang.String" update="true"
+			insert="true" column="PATH" length="100" />
+		<property name="groupId" type="java.lang.String" update="true"
+			insert="true" column="GROUPID" length="100" />
+		<property name="appName" type="java.lang.String" update="true"
+			insert="true" column="APPNAME" length="100" />
+		<property name="fileSize" type="long" update="true" insert="true"
+			column="FILESIZE" />
+		<property name="fileType" type="java.lang.String" update="true" insert="true"
+			column="FILETYPE" />
+		<property name="memo" type="java.lang.String" update="true" insert="true"
+			column="MEMO" />
+		<property name="version" type="java.lang.String" update="true" insert="true"
+			column="VERSION" />
+		<property name="status" type="java.lang.String" update="true" insert="true"
+			column="STATUS" />
+		<property name="groupName" type="java.lang.String" update="true" insert="true"
+			column="GROUPNAME" />	
+		<property name="uploader" type="java.lang.String" update="true" insert="true"
+			column="UPLOADER" />
+		<property name="uploaderLoginName" type="java.lang.String" update="true" insert="true"
+			column="UPLOADER_LOGIN_NAME" />
+		<property name="uploadDate" type="java.lang.String" update="true"
+			insert="true" column="UPLOADDATE" length="19" />
+		<property name="operateTime" type="long" update="true"
+			insert="true" column="OPERATE_TIME" />
+		<property name="operator" type="java.lang.String" update="true"
+			insert="true" column="OPERATOR" length="50" />
+		<property name="removed" type="int" update="true" insert="true"
+			column="REMOVED" length="1" />
+	</class>
+</hibernate-mapping>

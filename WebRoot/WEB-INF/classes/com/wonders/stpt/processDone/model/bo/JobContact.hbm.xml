@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.wonders.stpt.processDone.model.bo.JobContact" table="T_JOB_CONTACT" dynamic-update="true" dynamic-insert="true">
+
+        <id name="id" column="id" type="java.lang.String" unsaved-value="0" >
+            <generator class="uuid.hex"></generator>
+        </id>
+
+        <property name="serial" type="java.lang.String" update="true" insert="true" column="serial" length="200" />
+        
+        <property name="main_unit" type="java.lang.String" update="true" insert="true" column="main_unit" length="200" />
+        
+        <property name="main_unit_id" type="java.lang.String" update="true" insert="true" column="main_unit_id" length="200" />
+        
+        <property name="main_receive_time" type="java.lang.String" update="true" insert="true" column="main_receive_time" length="20" />
+        
+        <property name="copy_unit" type="java.lang.String" update="true" insert="true" column="copy_unit" length="4000" />
+        
+        <property name="copy_unit_id" type="java.lang.String" update="true" insert="true" column="copy_unit_id" length="500" />
+        
+        <property name="copy_receive_time" type="java.lang.String" update="true" insert="true" column="copy_receive_time" length="20" />
+        
+        <property name="contact_date" type="java.lang.String" update="true" insert="true" column="contact_date" length="20" />
+        
+        <property name="reply_date" type="java.lang.String" update="true" insert="true" column="reply_date" length="20" />
+        
+        <property name="time_diff" type="java.lang.String" update="true" insert="true" column="time_diff" length="10" />
+        
+        <property name="theme" type="java.lang.String" update="true" insert="true" column="theme" length="300" />
+        
+        <property name="content" type="java.lang.String" update="true" insert="true" column="content" length="4000" />
+        
+        <property name="content_attachment_id" type="java.lang.String" update="true" insert="true" column="content_attachment_id" length="100" />
+        
+        <property name="content_operator" type="java.lang.String" update="true" insert="true" column="content_operator" length="100" />
+        
+        <property name="content_signer" type="java.lang.String" update="true" insert="true" column="content_signer" length="100" />
+        
+        <property name="content_inscribe" type="java.lang.String" update="true" insert="true" column="content_inscribe" length="100" />
+        
+        <property name="reply_signer" type="java.lang.String" update="true" insert="true" column="reply_signer" length="100" />
+        
+        <property name="reply_inscribe" type="java.lang.String" update="true" insert="true" column="reply_inscribe" length="100" />
+        
+        <property name="processname" type="java.lang.String" update="true" insert="true" column="processname" length="200" />
+        
+        <property name="instanceID" type="java.lang.String" update="true" insert="true" column="instanceID" length="100" />
+        
+        <property name="apply_deptId" type="java.lang.String" update="true" insert="true" column="apply_deptId" length="100" />
+        
+        <property name="turtleneck" type="java.lang.String" update="true" insert="true" column="turtleneck" length="200" />
+     	
+     	<property name="link" type="java.lang.String" update="true" insert="true" column="link" length="500" />
+     	
+     	<property name="officeValidate" type="java.lang.String" update="true" insert="true" column="officevalidate" length="500" />
+     	
+     	<property name="messageUrl" type="java.lang.String" update="true" insert="true" column="messageurl" length="500" />
+     	
+     	<property name="copyUnitUsers" type="java.lang.String" update="true" insert="true" column="copyunitusers" length="500" />
+     	
+     	<property name="arApply" type="java.lang.String" update="true" insert="true" column="arapply" length="500" />
+		
+		<property name="groupAttribute" type="java.lang.String" update="true" insert="true" column="group_attribute" length="4000" />
+		
+		<property name="modified" type="java.lang.String" update="true" insert="true" column="modified" length="10"/>
+		
+		<property name="flag" type="java.lang.String" update="true" insert="true" column="flag" length="10"/>
+		
+		<property name="removed" type="java.lang.String" update="true" insert="true"  column="removed" length="10"/>
+    </class>
+
+</hibernate-mapping>

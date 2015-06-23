@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- =================================================================== -->
+	<!-- Service Define                                                -->
+	<!-- =================================================================== -->
+	<bean id="newMenuService" parent="basicTxProxy" >
+		<property name="target" ref="newMenuServiceImpl" />
+	</bean>
+
+	<bean id="newMenuServiceImpl"
+		class="com.wonders.stpt.core.menu.service.impl.newMenuServiceImpl">
+		<property name="menuResourceDAO" ref="menuResourceDAOImpl" />		
+	</bean>
+	<!-- =================================================================== -->
+	<!-- Dao,Service Define                                                -->
+	<!-- =================================================================== -->	
+	<bean id="menuResourceDAOImpl" parent="abstractDAO"
+		class="com.wondersgroup.framework.menu.dao.impl.MenuResourceDAOImpl">
+	</bean>
+	
+</beans>
+

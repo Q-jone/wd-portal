@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--MetroExpress Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="metroExpressDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.metroExpress.dao.impl.MetroExpressDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="metroExpressServiceImpl"
+		class="com.wonders.stpt.metroExpress.service.impl.MetroExpressServiceImpl">
+		<property name="metroExpressDao" ref="metroExpressDaoImpl" />
+	</bean>
+	
+	<bean id="metroExpressService" parent="basicTxProxy2">
+		<property name="target" ref="metroExpressServiceImpl" />
+	</bean>
+	
+	<bean name="metroExpressAction"
+		class="com.wonders.stpt.metroExpress.action.MetroExpressAction"
+		singleton="false">
+		<property name="metroExpressService" ref="metroExpressService"></property>	
+	</bean>
+	</beans>

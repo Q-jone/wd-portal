@@ -1,0 +1,67 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="25242880" />
+	<constant name="struts.custom.i18n.resources" value="fileUpload"></constant>
+	<package name="userManage" namespace="/userManage" extends="cuteframework-default">
+		<action name="stptUserExist" class="userManageAction" method="stptUserExist">
+		</action>
+		
+		
+		<action name="stptUserManageByPage" class="userManageAction" method="stptUserManageByPage">
+			<result name="success">
+				/userManage/stptUserManageList.jsp
+			</result>
+		</action>
+	
+		
+		<action name="stptUserView" class="userManageAction" method="stptUserView">
+			<result name="success" type="dispatcher">
+				/userManage/stptUserView.jsp
+			</result>
+		</action>
+		
+		<action name="stptUserEdit" class="userManageAction" method="stptUserEdit">
+			<result name="success" type="dispatcher">
+				/userManage/stptUserEdit.jsp
+			</result>
+		</action>
+		
+		<action name="stptUserDelete" class="userManageAction" method="stptUserDelete">
+		</action>
+		
+		<action name="stptUserUpdate" class="userManageAction" method="stptUserUpdate">
+			<result name="stptUserEdited" type="redirectAction">
+				<param name="actionName">stptUserView</param>
+		        <param name="stptUserId">${stptUser.id}</param>
+			</result>
+		</action>
+		
+		
+		<action name="stptUserToFix" class="userManageAction" method="stptUserToFix">
+			<result name="success" type="dispatcher">
+				/userManage/stptUserFix.jsp
+			</result>
+		</action>
+		
+		
+		<action name="stptUserFix" class="userManageAction" method="stptUserFix">
+		</action>
+		
+		<action name="findStptUserName" class="userManageAction" method="findStptUserName">
+		</action>
+		
+		<action name="stptUserAdd" class="userManageAction" method="stptUserAdd">
+			<result name="success" type="redirect">
+				/userManage/stptUserAdd.jsp
+			</result>
+		</action>
+		
+		<action name="excelImport" class="userManageAction" method="excelImport">
+		</action>
+		<action name="excelDownload" class="userManageAction" method="excelDownload">
+		</action>
+	</package>
+</struts>
+	

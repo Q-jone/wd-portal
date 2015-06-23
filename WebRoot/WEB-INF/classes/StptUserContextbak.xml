@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--stpstptUser Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="stptUserDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.core.userManage.dao.impl.StptUserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="stptUserServiceImpl"
+		class="com.wonders.stpt.core.userManage.service.impl.StptUserServiceImpl">
+		<property name="stptUserDao" ref="stptUserDaoImpl" />
+	</bean>
+	
+	<bean id="stptUserService" parent="basicTxProxy">
+		<property name="target" ref="stptUserServiceImpl" />
+	</bean>
+	
+	<bean name="userManageAction"
+		class="com.wonders.stpt.core.userManage.action.UserManageAction"
+		singleton="false">
+		<property name="stptUserService" ref="stptUserService"></property>	
+	</bean>
+	
+	</beans>

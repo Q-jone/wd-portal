@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	
+	<!-- =================================================================== -->
+	<!-- DAO Impl Definition                                                 -->
+	<!-- =================================================================== -->
+
+	<bean id="domainAuthenticationDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.core.domainAuthentication.dao.impl.DomainAuthenticationDaoImpl">
+	</bean>
+	
+	<bean id="domainAuthenticationServiceImpl"
+		class="com.wonders.stpt.core.domainAuthentication.service.impl.DomainAuthenticationServiceImpl">
+		<property name="domainAuthenticationDao" ref="domainAuthenticationDaoImpl" />
+	</bean>
+	
+	<bean id="domainAuthenticationService" parent="basicTxProxy">
+		<property name="target" ref="domainAuthenticationServiceImpl" />
+	</bean>
+</beans>
+	

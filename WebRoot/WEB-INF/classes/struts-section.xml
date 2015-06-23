@@ -1,0 +1,14 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="section" namespace="/section" extends="cuteframework-default">
+		<action name="getJrswDbx" class="SectionAction" method="getJrswDbx"/>
+		<action name="getUrgeCount" class="SectionAction" method="getUrgeCount"/>
+		<action name="countMessage" class="SectionAction" method="countMessage"/>
+		<action name="countJbx" class="SectionAction" method="countJbx"/>
+		<action name="findIfActiveUser" class="SectionAction" method="findIfActiveUser"/>
+		<action name="findDataFromCaAuditInfo" class="SectionAction" method="findDataFromCaAuditInfo"/>
+	</package>
+</struts>
+	

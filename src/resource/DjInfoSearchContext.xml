@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+
+	<bean id="djInfoSearchServiceImpl" class="com.wonders.stpt.infoSearch.service.impl.DJInfoSearchServiceImpl">
+	</bean>
+	
+	<bean id="djInfoSearchService" parent="basicTxProxy3">
+		<property name="target" ref="djInfoSearchServiceImpl" />
+	</bean>
+	
+	<bean name="djInfoSearchAction" class="com.wonders.stpt.infoSearch.action.DJInfoSearchAction"
+		singleton="false">
+		<property name="djInfoSearchService" ref="djInfoSearchService"></property>	
+		<property name="infoSearchService" ref="infoSearchService"></property>
+	</bean>
+	
+	
+</beans>

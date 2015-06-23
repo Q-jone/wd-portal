@@ -1,0 +1,14 @@
+.t_c {
+	text-align: center;
+}
+
+.t_r {
+	text-align: right;
+}
+
+.t_l {
+	text-align: left;	
+}
+.gys2{ width:328px; background:url(../images/L_box_bg3.png) no-repeat; padding:7px 0 0 8px; margin-top:12px;}
+.gys_body2{ height:457px;width:318px; background:#f7fbff; border:1px solid #b9b9b9; border-radius:5px; text-align:center;}
+.gys_body2 h3{ font:bold 14px/42px 'Microsoft Yahei'; color:#494949;}

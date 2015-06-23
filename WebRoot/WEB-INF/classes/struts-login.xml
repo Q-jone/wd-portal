@@ -1,0 +1,45 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="login" namespace="/" extends="cuteframework-default">
+		<action name="login" class="login" method="execute">
+			<result name="success" type="redirect">
+				mainFrame/frame.html
+			</result>
+			<result name="input" type="dispatcher">
+				login.jsp
+			</result>
+			<result name="auth" type="dispatcher">
+				service/domainCrossRedirect.jsp
+			</result>
+			<result name="logout" type="redirect">
+				logout.jsp
+			</result>
+		</action>
+		
+			<!-- login entry for testers -->
+		<action name="xlogin" class="testerLoginAction" method="execute">
+			<result name="success" type="redirect">
+				mainFrame/frame.html
+			</result>
+			<result name="input" type="dispatcher">
+				logout.jsp
+			</result>
+			<result name="cross" type="dispatcher">
+				service/domainCrossRedirect.jsp
+			</result>
+		</action>
+		
+		<action name="showTuserDepts" class="login" method="showTuserDepts">
+		</action>
+		
+		<action name="switchDepts" class="login" method="switchDepts">
+		</action>
+		
+		<action name="validateNumber" class="com.wonders.stpt.core.login.action.ValidateNumberAction">
+			
+		</action>
+	</package>
+</struts>
+	

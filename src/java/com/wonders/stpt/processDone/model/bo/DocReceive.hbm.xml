@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.wonders.stpt.processDone.model.bo.DocReceiveBo"
+        table="T_DOC_RECEIVE"
+        dynamic-update="true"
+    >
+<!--
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            unsaved-value="0"
+        >
+         
+            <generator class="native">
+                <param name="sequence">SEQ_DOC_RECEIVE</param>
+               
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-DocReceive.xml 
+                  containing the additional parameters and place it in your merge dir. 
+            
+            </generator>
+             
+        </id> --> 
+		<id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="200"
+            unsaved-value="undefined"
+        >
+        	<generator class="uuid.hex">
+        	</generator>
+              </id>
+		
+        <property
+            name="drAttach"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ATTACH"
+            length="50"
+        />
+
+        <property
+            name="drBlMode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="BL_MODE"
+        />
+
+        <property
+            name="drBlResult"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="BL_RESULT"
+            length="500"
+        />
+
+        <property
+            name="drContent"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTENT"
+            length="50"
+        />
+
+        <property
+            name="drFiledate"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FILEDATE"
+            length="19"
+        />
+
+        <property
+            name="drFilezh"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FILEZH"
+            length="100"
+        />
+
+        <property
+            name="drKeyword"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="KEYWORD"
+            length="100"
+        />
+
+        <property
+            name="drLastDate"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="LASTDATE"
+            length="19"
+        />
+
+        <property
+            name="drNbOpinion"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NB_OPINION"
+            length="500"
+        />
+
+        <property
+            name="drNum"
+            type="long"
+            update="true"
+            insert="true"
+            column="NUM"
+        />
+
+        <property
+            name="drPbOpinion"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PB_OPINION"
+            length="500"
+        />
+
+        <property
+            name="drSwtype"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SWTYPE"
+            length="50"
+        />
+
+        <property
+            name="drSecretClass"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SECRET_CLASS"
+        />
+
+        <property
+            name="drSwdate"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SWDATE"
+            length="19"
+        />
+
+        <property
+            name="drSwid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SWID"
+        />
+
+        <property
+            name="drSwunit"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SWUNIT"
+            length="100"
+        />
+
+        <property
+            name="drTitle"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TITLE"
+            length="100"
+        />
+
+        <property
+            name="instanceId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="INSTANCEID"
+            length="100"
+        />
+
+        <property
+            name="modelId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="MODELID"
+            length="100"
+        />
+
+        <property
+            name="operator"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OPERATOR"
+            length="100"
+        />
+
+        <property
+            name="userId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="USERID"
+            length="100"
+        />
+
+        <property
+            name="workitemId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="WORKITEMID"
+            length="100"
+        />
+
+        <property
+            name="operatetime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OPERATE_TIME"
+            length="19"
+        />
+
+        <property
+            name="removed"
+            type="int"
+            update="true"
+            insert="true"
+            column="REMOVED"
+            length="1"
+        />
+        
+        <property
+            name="chiefDep"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CHIEF_DEP"
+            length="200"
+        />
+        
+        <property
+            name="ordinartyDep"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ORDINARY_DEP"
+            length="200"
+        />
+        
+        <property
+            name="chiefPerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CHIEF_PERSON"
+            length="200"
+        />
+        
+        <property
+            name="ordinartyPerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ORDINARY_PERSON"
+            length="200"
+        />
+	<property
+            name="receivePerson"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RECEIVE_PERSON"
+            length="200"
+        />
+        
+        <property
+            name="receiveDept"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RECEIVE_DEPT"
+            length="200"
+        />
+        <property
+            name="remark"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REMARK"
+            length="500"
+        />
+        <property
+            name="flag"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FLAG"
+            length="10"
+        />
+        <property
+            name="taskid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TASKID"
+            length="200"
+        />
+        
+        <property
+            name="personName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PERSONNAME"
+            length="4000"
+        />
+        
+        <property
+            name="attach"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DEALFILE"
+            length="4000"
+        />
+        <property
+            name="priorities"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PRIORITIES"
+            length="200"
+        />
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-DocReceive.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean name="metroIndicatorAction"
+		class="com.wonders.stpt.metroIndicator.action.MetroIndicatorAction"
+		singleton="false">
+		<property name="metroProductionService" ref="metroProductionService"></property>	
+		<property name="metroQualityService" ref="metroQualityService"></property>	
+		<property name="metroScaleService" ref="metroScaleService"></property>
+		<property name="metroExpressService" ref="metroExpressService"></property>	
+		<property name="infoSearchService" ref="infoSearchService"></property>	
+	</bean>
+	</beans>

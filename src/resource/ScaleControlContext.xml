@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- begin-user-doc -->
+	<!-- end-user-doc -->
+	
+	<!-- =================================================================== -->
+	<!-- DAO Impl Definition                                                 -->
+	<!-- =================================================================== -->
+
+	<bean id="metroScaleControlDaoImpl" parent="abstractHibernateDao" class="com.wonders.stpt.indicatorControl.dao.impl.MetroScaleControlDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="metroScaleControlServiceImpl"
+		class="com.wonders.stpt.indicatorControl.service.impl.MetroScaleControlServiceImpl">
+		<property name="metroScaleControlDao" ref="metroScaleControlDaoImpl" />
+	</bean>
+	
+	<bean id="metroScaleControlService" parent="basicTxProxy">
+		<property name="target" ref="metroScaleControlServiceImpl" />
+	</bean>
+	
+	<bean name="metroScaleControlAction"
+		class="com.wonders.stpt.indicatorControl.action.MetroScaleControlAction"
+		singleton="false">
+		<property name="metroScaleControlService" ref="metroScaleControlService"></property>	
+	</bean>
+
+</beans>
+	

@@ -1,0 +1,12 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="metroQuality" namespace="/metroQuality" extends="cuteframework-default">
+		
+		<action name="findMetroQualityLatestEvents" class="metroQualityAction" method="metroQualityLatestEvents">
+		</action>
+
+	</package>
+</struts>
+	

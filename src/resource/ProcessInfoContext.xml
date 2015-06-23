@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--MetroExpress Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="processInfoDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.processInfo.dao.impl.ProcessInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="processInfoServiceImpl"
+		class="com.wonders.stpt.processInfo.service.impl.ProcessInfoServiceImpl">
+		<property name="processInfoDao" ref="processInfoDaoImpl" />
+	</bean>
+	
+	<bean id="processInfoService" parent="basicTxProxy2">
+		<property name="target" ref="processInfoServiceImpl" />
+	</bean>
+	
+	<bean name="processInfoAction"
+		class="com.wonders.stpt.processInfo.action.ProcessInfoAction"
+		singleton="false">
+		<property name="processInfoService" ref="processInfoService"></property>	
+	</bean>
+	</beans>

@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="scaleIndicator" namespace="/operationIndicator" extends="cuteframework-default">
+		<!-- 跳转页面 -->
+		<action name="showScaleListPage" class="scaleIndicatorAction" method="showScaleListPage">
+			<result name="showScaleListPage">/operationIndicator/listScale.jsp</result>
+		</action>
+		<!--查询图表数据Scale -->
+		<action name="findChartDataScale" class="scaleIndicatorAction" method="findChartDataScale"/>
+		
+		
+		<!-- 跳转到详细页面 -->
+		<action name="showScaleDetailPage" class="scaleIndicatorAction" method="showScaleDetailPage">
+			<result name="chart12">/operationIndicator/chart12.jsp</result>
+		</action>
+		
+	</package>
+</struts>
+	

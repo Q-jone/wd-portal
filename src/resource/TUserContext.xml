@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--Tuser Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="tuserDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.core.login.dao.impl.TuserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="tuserServiceImpl"
+		class="com.wonders.stpt.core.login.service.impl.TuserServiceImpl">
+		<property name="tuserDao" ref="tuserDaoImpl" />
+	</bean>
+	
+	<bean id="tuserService" parent="basicTxProxy">
+		<property name="target" ref="tuserServiceImpl" />
+	</bean>
+	</beans>

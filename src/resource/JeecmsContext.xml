@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="jeecmsInfoDaoImpl" class="com.wonders.stpt.jeecms.dao.impl.JeecmsInfoDaoImpl">
+		
+	</bean>	
+
+	<bean id="jeecmsServiceImpl" class="com.wonders.stpt.jeecms.service.impl.JeecmsServiceImpl">
+		<property name="jeecmsInfoDao" ref="jeecmsInfoDaoImpl" />
+	</bean>
+	
+	<bean id="jeecmsService" parent="basicTxProxy3">
+		<property name="target" ref="jeecmsServiceImpl" />
+	</bean>
+	
+	<bean name="jeecmsInfoAction" class="com.wonders.stpt.jeecms.action.JeecmsInfoAction"
+		singleton="false">
+		<property name="jeecmsService" ref="jeecmsService"></property>
+	</bean>
+	
+	
+</beans>

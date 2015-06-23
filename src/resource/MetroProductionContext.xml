@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--MetroProduction Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="metroProductionDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.metroIndicator.dao.impl.MetroProductionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="metroProductionServiceImpl"
+		class="com.wonders.stpt.metroIndicator.service.impl.MetroProductionServiceImpl">
+		<property name="metroProductionDao" ref="metroProductionDaoImpl" />
+	</bean>
+	
+	<bean id="metroProductionService" parent="basicTxProxy2">
+		<property name="target" ref="metroProductionServiceImpl" />
+	</bean>
+	
+	<bean name="metroProductionAction"
+		class="com.wonders.stpt.metroIndicator.action.MetroProductionAction"
+		singleton="false">
+		<property name="metroProductionService" ref="metroProductionService"></property>	
+	</bean>
+	</beans>

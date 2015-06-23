@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean name="SectionAction"  class="com.wonders.stpt.section.SectionAction">
+		<property name="dao" ref="SectionDaoImpl" />
+		<property name="auditDao" ref="AuditDaoImpl" />
+	</bean>	
+	
+	<bean id="SectionDaoImpl" parent="abstractHibernateDao"	class="com.wonders.stpt.section.SectionDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="AuditDaoImpl" parent="abstractHibernateDao"	class="com.wonders.stpt.section.AuditDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>
+	

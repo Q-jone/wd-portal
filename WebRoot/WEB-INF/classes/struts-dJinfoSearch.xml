@@ -1,0 +1,32 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="djInfoSearch" namespace="/djInfoSearch" extends="cuteframework-default">
+		
+		<action name="djNewsLatestEvents" class="djInfoSearchAction" method="djNewsLatestEvents"/>
+		
+		
+		<action name="findByPage" class="djInfoSearchAction" method="findByPage">
+			<result name="findByPage">/infoSearch/dj_list.jsp</result>
+		</action>
+		
+		<action name="findDataByPage" class="djInfoSearchAction" method="findDataByPage"/>
+		
+		
+		<!-- 
+		<action name="findStfbNewsByPage" class="djInfoSearchAction" method="stfbNewsByPage">
+			<result name="success">
+				/infoSearch/news_list.jsp
+			</result>
+		</action>
+		
+		
+		<action name="findStfbPicNewsLatestEvents" class="djInfoSearchAction" method="stfbPicNewsLatestEvents">
+		</action>
+		<action name="findStfbHeadNewsLatestEvents" class="djInfoSearchAction" method="stfbHeadNewsLatestEvents">
+		</action>
+		 -->
+	</package>
+</struts>
+	

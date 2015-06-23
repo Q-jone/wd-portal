@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>jQuery UI Example Page</title>
+		<link type="text/css" href="css/flick/jquery-ui-1.8.22.custom.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				function log( message ) {
+					$( "<div/>" ).text( message ).prependTo( "#log" );
+					$( "#log" ).scrollTop( 0 );
+				}
+				var data = ["1","2","3","4","5","6","7","8",];
+				var projects = [
+				    			{
+				    				value: "aaaa", //存储
+				    				label: "aaaa", //显示
+				    				desc: "the write less, do more, JavaScript library",
+				    				icon: "jquery_32x32.png"
+				    			},
+				    			{
+				    				value: "bbbb-ui",
+				    				label: "bbbbbb UI",
+				    				desc: "the official user interface library for jQuery",
+				    				icon: "jqueryui_32x32.png"
+				    			},
+				    			{
+				    				value: "cccccc",
+				    				label: "cccccccccc JS",
+				    				desc: "a pure-JavaScript CSS selector engine",
+				    				icon: "sizzlejs_32x32.png"
+				    			}
+				    		];
+	    		
+				//hover states on the static widgets
+				$('#dialog_link, ul#icons li').hover(
+					function() { $(this).addClass('ui-state-hover'); },
+					function() { $(this).removeClass('ui-state-hover'); }
+				);
+				//一般例子
+				/*$.ajax({
+					url : '/portal/metroIndicator/findMetroExpressLatestEvents.action?random='+Math.random(),
+					 //url:	"/portal/constructionNotice/showLineInfo.action?random="+Math.random(),
+					//url :	"http://10.1.41.252:8088/portal/constructionNotice/showLineInfoCross.action?jsoncallback=?",
+					type:	"post",
+				data:	{
+						"accidentLine" : 0
+							},
+					dataType : "json",//跨域必须用jsonp   
+				   cache: 	false,
+				   error:	function(){alert('系统连接失败，请稍后再试！')},
+				 success: 	function(obj){	
+								if(obj){
+									$("#autocomplete").autocomplete({
+										source:projects,
+										 minLength: 0
+										 //delay: 3000  millseconds
+									});
+								}		//html，即要显示的信息，后台已完成拼接
+							}
+				});
+				*/
+				$("#autocomplete").autocomplete({
+					source: function( request, response ) {
+						$.ajax({
+							url: '/portal/metroIndicator/findMetroExpressLatestEvents.action?random='+Math.random(),
+							dataType: "json",
+							data: {
+								"accidentLine" : 0
+							},
+							success: function( data ) {
+								response( $.map( data, function( item ) {
+									return {
+										label: item.accidentTitle + (item.accidentTitle ? ", " + item.detailSimple : "") + ", " + item.remarkSimple,
+										value: item.accidentDate
+									}
+								}));
+							}
+						});
+					},
+					minLength: 1,
+					select: function( event, ui ) {
+						log( ui.item ?"Selected: " + ui.item.label :"Nothing selected, input was " + this.value);
+					}
+				
+			});
+			});
+		</script>
+		<style type="text/css">
+			/*demo page css*/
+			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+		</style>
+	</head>
+	<body>
+	<h1>Welcome to jQuery UI!</h1>
+		<!-- Autocomplete -->
+		<h2 class="demoHeaders">Autocomplete</h2>
+		<div>
+			<input id="autocomplete" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+		</div>
+		
+		Result:
+	<div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+
+
+	</body>
+</html>
+
+

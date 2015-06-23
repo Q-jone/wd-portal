@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class
+        name="com.wonders.stpt.processDone.model.bo.Tasks"
+        table="TASKS"
+        dynamic-update="true"
+    >
+		<id name="taskId" type="string">
+            <column name="taskid" length="65" />
+            <generator class="uuid.hex">
+        	</generator>
+        </id>
+        <property name="processName" type="string">
+            <column name="processname" length="512" />
+        </property>
+		<property name="incident" type="int">
+            <column name="incident" length="20" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" length="20" />
+        </property>
+        <property name="stepLabel" type="string">
+            <column name="steplabel" length="256" />
+        </property>
+        <property name="taskUser" type="string">
+            <column name="TASKUSER" length="512" />
+        </property>
+        <property name="startTime" type="java.sql.Date">
+            <column name="STARTTIME" />
+        </property>
+        <property name="endTime" type="java.sql.Date">
+            <column name="ENDTIME" />
+        </property>
+    </class>
+
+</hibernate-mapping>

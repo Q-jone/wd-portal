@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- begin-user-doc -->
+	<!-- end-user-doc -->
+	
+	<!-- =================================================================== -->
+	<!-- DAO Impl Definition                                                 -->
+	<!-- =================================================================== -->
+
+	<bean id="torganRelationDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.organTree.dao.impl.TorganRelationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="torganRelationServiceImpl"
+		class="com.wonders.stpt.organTree.service.impl.TorganRelationServiceImpl">
+		<property name="torganRelationDao" ref="torganRelationDaoImpl" />
+	</bean>
+	
+	<bean id="torganRelationService" parent="basicTxProxy">
+		<property name="target" ref="torganRelationServiceImpl" />
+	</bean>
+	
+</beans>
+	

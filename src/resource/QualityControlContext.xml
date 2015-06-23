@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- begin-user-doc -->
+	<!-- end-user-doc -->
+	
+	<!-- =================================================================== -->
+	<!-- DAO Impl Definition                                                 -->
+	<!-- =================================================================== -->
+
+	<bean id="metroQualityControlDaoImpl" parent="abstractHibernateDao" class="com.wonders.stpt.indicatorControl.dao.impl.MetroQualityControlDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="metroQualityControlServiceImpl"
+		class="com.wonders.stpt.indicatorControl.service.impl.MetroQualityControlServiceImpl">
+		<property name="metroQualityControlDao" ref="metroQualityControlDaoImpl" />
+	</bean>
+	
+	<bean id="metroQualityControlService" parent="basicTxProxy">
+		<property name="target" ref="metroQualityControlServiceImpl" />
+	</bean>
+	
+	<bean name="metroQualityControlAction"
+		class="com.wonders.stpt.indicatorControl.action.MetroQualityControlAction"
+		singleton="false">
+		<property name="metroQualityControlService" ref="metroQualityControlService"></property>
+		<property name="expressService" ref="metroExpressService"></property>
+	</bean>
+
+</beans>
+	

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<meta charset="utf-8" />
+<title>外事信息系统</title>
+<link rel="stylesheet" href="../css/formalize.css" />
+
+<link rel="stylesheet" href="../css/page.css" />
+<link rel="stylesheet" href="../css/default/imgs.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+		<link type="text/css" href="../css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+		<!--[if IE 6.0]>
+           <script src="js/iepng.js" type="text/javascript"></script>
+           <script type="text/javascript">
+                EvPNG.fix('div, ul, ol, img, li, input, span, a, h1, h2, h3, h4, h5, h6, p, dl, dt');
+           </script>
+       <![endif]-->
+		<script src="../js/html5.js"></script>
+		<script src="../js/jquery-1.7.1.js"></script>
+		<script src="../js/jquery.formalize.js"></script>
+		<script src="../jeecms/js/getLatestDays.js"></script>
+<style>
+.ws{
+	position: relative;
+	width: 30%;
+	margin: 10px;
+	float: left;
+}
+.ws img{
+	width: 100%;
+	min-width: 240px;
+	height: 200px;
+}
+.ws header{
+	position: absolute;
+	height: 60px;
+	top: 140px;
+	width: 100%;
+	background-color: #000;
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	opacity:0.7;
+	z-index:999;
+	border-radius: 0;
+	line-height: 60px;
+	background:#000;
+}
+.ws header h3{
+	padding-left: 16px;
+	color:#fff;
+}
+</style>
+<script>
+
+$(function(){
+	var url = $("#url_1").attr("href");
+	var latestDays = getLatestDays("past",null);
+	$("#url_1").attr("href",url+"&latestDays="+latestDays);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/portal/jeecms/findIfWsLeader.action?random='+Math.random(),
+		dataType:'json',
+		cache : false,
+		error:function(){alert('系统连接失败，请稍后再试！')},
+		success: function(obj){
+			if(obj.ifLeader){
+				$("#manage").show();
+			}
+		}
+	});
+})
+
+
+</script>
+</head>
+
+<body>
+	<div class="main">
+    	<!--Ctrl-->
+		<div class="ctrl clearfix">
+        	<div class="fl"><img src="../css/default/images/sideBar_arrow_left.jpg" width="46" height="30" alt="收起"></div>
+            <div class="posi fl">
+            	<ul>
+                	<!-- <li><a href="#">外事信息系统</a></li> -->
+                	 <li class="fin">外事信息系统</li> 
+                </ul>
+            </div>
+            <div class="fr lit_nav">
+            	<ul>
+                <li class="selected"><a class="print" href="#">打印</a></li>
+                <li><a class="storage" href="#">网络硬盘</a></li>
+                <li><a class="rss" href="#">订阅</a></li>
+                <li><a class="chat" href="#">聊天</a></li>
+                <li><a class="query" href="#">查询</a></li>
+                </ul>
+            </div>
+   		</div>
+        <!--Ctrl End-->
+        <div class="clearfix pt45">
+          <div class="ws"><a id="url_1" href="/portal/jeecms/findStfbNewsByPage.action?channelId=1712"><header><h3>因公临时出国信息</h3></header><img src="../css/default/images/jt7qLmwCIX.jpg"></img></a></div>
+          <div class="ws"><a href="/portal/jeecms/findStfbNewsByPage.action?channelId=1713"><header><h3>最新护照签证信息</h3></header><img src="../css/default/images/CivilAircraft_003003.jpg"></img></a></div>
+          <div class="ws"><a href="/portal/jeecms/findStfbNewsByPage.action?channelId=1733"><header><h3>外事成果交流</h3></header><img src="../css/default/images/etPiyGIsDU.jpg"></img></a></div>
+          <div class="ws"><a href="/portal/jeecms/findStfbNewsByPage.action?channelId=1714"><header><h3>各国签证要求</h3></header><img src="../css/default/images/CivilAircraft_002009.jpg"></img></a></div>
+          <div class="ws"><a href="/portal/jeecms/findStfbNewsByPage.action?channelId=1732"><header><h3>各类表格下载</h3></header><img src="../css/default/images/DSCN0069__detail_image.jpg"></img></a></div>
+          <div class="ws" id="manage" style="display:none"><a href="/portal/jeecms/findStfbNewsByPage.action?channelId=1712"><header><h3>因公临时出国信息(管理)</h3></header><img src="../css/default/images/jt7qLmwCIX.jpg"></img></a></div>
+        </div>
+	</div>
+</body>
+</html>

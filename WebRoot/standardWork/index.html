@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <title>申通地铁标准化管理系统</title>
+    <link rel="stylesheet" href="css/formalize.css" />
+    <link rel="stylesheet" href="css/page.css" />
+    <link rel="stylesheet" href="css/default/imgs.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link type="text/css" href="css/flick/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+    <script src="../js/html5.js"></script>
+    <script src="../js/jquery-1.7.1.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script type="text/javascript" src="../js/flick/jquery-ui-1.8.18.custom.min.js"></script>
+    <script src="../js/jquery.formalize.js"></script>
+    <script src="../js/Player.js"></script>
+    
+    <script>
+      $(document).ready(function(e) {
+                $("#newsCenter").width($(".news").width()-$(".focusPic").width()-40);
+
+				$(window).resize(function(){
+					  $("#newsCenter").width($(".news").width()-$(".focusPic").width()-40);
+				})
+
+				
+            });
+            
+      
+      
+      $(function () {
+		    $('#piePic').highcharts({
+		        chart: {
+		            plotBackgroundColor: null,
+		            plotBorderWidth: null,
+		            plotShadow: false,
+		            height:300
+		        },
+		        title: {
+		            text: ''
+		        },
+		        tooltip: {
+		    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		        },
+		        plotOptions: {
+		            pie: {
+		                allowPointSelect: true,
+		                cursor: 'pointer',
+		                dataLabels: {
+		                    enabled: true,
+		                    color: '#000000',
+		                    connectorColor: '#000000',
+		                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+		                }
+		            }
+		        },
+		        series: [{
+		            type: 'pie',
+		            data: [
+		                ['维保中心',   10],
+		                ['运行公司',       20],		                
+		                ['运管中心',    25],
+		                ['标准化室',     15],
+		                ['组织人事部',   5],
+						['财务部',       3],		                
+		                ['资产中心',    3],
+		                ['培训中心',     5],
+		                ['审计室',   4],
+						['技术中心',   10]
+		            ]
+		        }]
+		    });
+		});
+		
+		
+		$(function () {
+	        $('#linePic').highcharts({
+	            chart:{height:300},
+	            title: {
+	                text: '',
+	                x: -20 //center
+	            },
+	            subtitle: {
+	                text: '',
+	                x: -20
+	            },
+	            xAxis: {
+	                categories: ['2008', '2009', '2010', '2011', '2012']
+	            },
+	            yAxis: {
+	                title: {
+	                    text: 'Temperature (°C)'
+	                },
+	                plotLines: [{
+	                    value: 0,
+	                    width: 1,
+	                    color: '#808080'
+	                }]
+	            },
+	            tooltip: {
+	                valueSuffix: '°C'
+	            },
+	            legend: {
+	                layout: 'vertical',
+	                align: 'right',
+	                verticalAlign: 'middle',
+	                borderWidth: 0
+	            },
+	            series: [{
+	                name: '计划修订标准',
+	                data: [5,6,7,8,9]
+	            }, {
+	                name: '实际修订标准',
+	                data: [3,5,8,8,8]
+	            }]
+	        });
+	    });
+    </script>
+    </head>
+
+    <body>
+    <div class="main mw1002"> 
+      <!--Ctrl-->
+      <div class="ctrl clearfix">
+        <div class="fl"><img src="../css/default/images/sideBar_arrow_left.jpg" width="46" height="30" alt="收起"></div>
+        <div class="posi fl">
+          <ul>
+            <li><a href="#">标准化管理系统</a></li>
+            <li class="fin">首页</li>
+          </ul>
+        </div>
+      </div>
+      <!--Ctrl End-->
+      <div class="clearfix pt45"> 
+        <!--<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="width:980px;">-->
+        <div class="right_main mb10"> 
+          <!--News-->
+          <div class="news clearfix">
+            <div class="news_r">
+              <div class="news_l"> 
+                <!--focusPic-->
+                <div class="focusPic fl">
+                  <ul class="fp_list">
+                    <li><a href="#"><img src="css/default/images/pic1.jpg" title=" "/></a></li>
+                    <li><a href="#"><img src="css/default/images/pic2.jpg" title="" /></a></li>
+                    <li><a href="#"><img src="css/default/images/icon_1.png" title=" "/></a></li>
+                    <li><a href="#"><img src="css/default/images/icon_2.png" title="" /></a></li>
+                  </ul>
+                  <ul class="word">
+                    <li><a href="#">标准化工作动态</a></li>
+                    <li><a href="#">标准化工作动态</a></li>
+                    <li><a href="#">标准化工作动态</a></li>
+                    <li><a href="#">标准化工作动态</a></li>
+                  </ul>
+                  <ul class="scrollnav">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                  </ul>
+                </div>
+                <!--focusPic End--> 
+                <!--Txt News-->
+                <div class="fl" id="newsCenter">
+                  <hgroup class="clearfix mb10">
+                    <h2 class="fl">标准化工作动态</h2>
+                    <h6 class="fl">News</h6>
+                    <p class="t_r"><a href="#" class="more_2">更多</a></p>
+                  </hgroup>
+                  <section> <a href="#">
+                    <h5>集团召开上海轨道交通施工图审查工作专题会</h5>
+                    <p>(通讯员:吴小光)2012年8月28日，集团召开上海轨道交通施工图审查专题会。市建设<br>
+                    工程设计文件审查管理事务中心主任陈</p>
+                    </a> </section>
+                  <ul class="txt_list">
+                    <li><a href="#">集团召开上海轨道交通施工图审查工作专题会</a><span>01-20</span></li>
+                    <li><a href="#">研究咨询公司与南昌地铁签订业主顾问咨询合同</a><span>01-20</span></li>
+                    <li><a href="#">应名洪、俞光耀调研技术中心工作</a><span>01-20</span></li>
+                    <li><a href="#">《上海4号线弓网拉弧现象分析及解决措施研究》通过专</a><span>01-20</span></li>
+                    <li><a href="#">技术中心完成《上海轨道交通行车关键岗位安全知识手册》</a><span>01-20</span></li>
+                    <li><a href="#">2012中国国际轨道交通展览会申通集团参展</a><span>01-20</span></li>
+                  </ul>
+                </div>
+                <!--Txt News End--> 
+              </div>
+            </div>
+          </div>
+          <!--News End--> 
+          <!--Panel_3-->
+          <div class="panel_4 mb10 panel_8">
+            <header>
+              <div class="tit">
+                <div class="bg clearfix">
+                  <h5 class="fl stats" style="margin-right:290px">标准体系</h5>
+                  <h5 class="fl stats">标准编制完成情况</h5>
+                </div>
+              </div>
+            </header>
+            <div class="con clearfix">
+              <div class="fl w50p">
+                <div class="gray_border">
+                  <div class="block">
+                    <div>
+                      <div class="categories t_r mr5"><a href="#">更多</a></div>
+                      <div class="clear"></div>
+                      <div class="t_c plr8" id="piePic">
+                        <!-- <div class="bor"><img src="css/default/hc2.jpg" width="457" height="294"></div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fl w50p">
+                <div class="gray_border">
+                  <div class="block">
+                    <div class="corner">
+                      <div class="categories t_r mr5"><a href="#">更多</a></div>
+                      <div class="clear"></div>
+                      <div class="t_c plr8">
+                        <div class="bor"><img src="css/default/ttt.png" width="457" height="297"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Panel_3 End--> 
+          <!--panel_4-->
+          <div class="panel_4 panel_8 mb10">
+            <header>
+              <div class="tit">
+                <div class="bg clearfix">
+                  <h5 class="fl stats">标准编制计划进度</h5>
+                  <div class="fr pt5">
+                    <select name="select2" class="input_small">
+                      <option>年度计划</option>
+                      <option class="Lbg_01 C_fff mb1">全部</option>
+                      <option class="Lbg_01 C_fff mb1">2014</option>
+                      <option class="Lbg_02 C_fff mb1">2013</option>
+                      <option class="Lbg_03 C_fff mb1">2012</option>
+                      <option class="Lbg_04 C_fff mb1">2011</option>
+                      <option class="Lbg_05 C_fff mb1">2010</option>
+                      <option class="Lbg_06 C_fff mb1">2009</option>
+                      <option class="Lbg_07 C_fff mb1">2008</option>
+                    </select>
+                    <select name="select2" class="input_small">
+                    	<option>工作类型</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </header>
+            <div class="con clearfix">
+              <div class="b_bor plr8" id="linePic">
+                <!-- <div class="bor h280 mb10"><img src="css/default/hc1.png"></div> -->
+              </div>
+            </div>
+          </div>
+          <!--Panel_4 End--> 
+        </div>
+        </td>
+        <!--<td>-->
+        <aside>
+          <div class="panel_1" style=" margin-right:0;">
+            <div class="bg_2">
+              <div class="bg_3">
+                <hgroup>
+                  <h5>方针目标</h5>
+                  <!--<a href="#" class="more_1">更 多</a>--> 
+                </hgroup>
+                <ul class="list"  style="padding:8px 0; width:90%">
+                  <li><a href="#" style="width:90%;">2013方针目标（一）</a></li>
+                  <li><a href="#" style="width:90%;">2013方针目标（二）</a></li>
+                  <li><a href="#" style="width:90%;">2013方针目标（三）</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel_1">
+            <div class="bg_2">
+              <div class="bg_3">
+                <hgroup>
+                  <h5>标准统计</h5>
+                  <a href="#" class="more_1">更 多</a> <span class="t_r mr_5">截止日期：<b>2013-04-11</b></span> </hgroup>
+                <div class="b_dash mb10 p8"> <b>标准统计</b>
+                  <ul>
+                    <li class="clearfix"> <span class="fl pt16">集团标准</span> <span class="fr pt16">个</span>
+                      <h1 class="fr">2000</h1>
+                    </li>
+                    <li class="clearfix"> <span class="fl pt16">直属单位标准</span> <span class="fr pt16">个</span>
+                      <h1 class="fr">1000</h1>
+                    </li>
+                    <li class="clearfix ml_5"> <span class="fl pt16">建设类标准</span> <span class="fr pt16">个</span>
+                      <h1 class="fr">1500</h1>
+                    </li>
+                    <li class="clearfix ml_5"> <span class="fl pt16">运营类标准</span> <span class="fr pt16">个</span>
+                      <h1 class="fr">500</h1>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb10 clearfix mr8">
+            <div class="mb10 hy_button"> <a href="/portal/standardWork/getFileListByPage.action" target="_blank" class="pllr">标准查询/下载</a></div>
+            <div class="mb10 hy_button"> <a href="/portal/standardWork/getContentListByPage.action" target="_blank" class="htzl">标准制/修订管理</a></div>
+            <div class="mb10 hy_button"> <a href="#" class="wsht">标准化工作管理</a></div>
+            <div class="mb10 hy_button"> <a href="#" class="wsht">权限管理/版本控制</a></div>
+            <div class="hy_button"> <a href="#" class="dtxx">意见反馈</a></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+</body>
+</html>

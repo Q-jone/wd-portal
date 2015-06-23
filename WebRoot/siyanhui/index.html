@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>上海地铁行业思想政治工作研究会 </title>
+<script src="images/html5.js"></script>
+<script src="jquery-1.7.1.js"></script>
+<style type="text/css">
+	body{
+		background:#dce7f0 url(images/bg.jpg) center top no-repeat;
+		margin:0;
+		padding:0;
+  		font:12px/1.5 'Helvetica Neue', 'Microsoft YaHei', Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+	ul, li{
+	  list-style: none;
+	}
+	
+	li {
+	  margin:0;
+	}
+	a,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	li,
+	menu,
+	ul,
+	div,
+	dl,
+	dt,
+	dd{
+	  border: 0;
+	  margin: 0;
+	  padding: 0;
+	  text-decoration:none;
+	/*
+	  Override the default (display: inline) for
+	  browsers that do not recognize HTML5 tags.
+	
+	  IE8 (and lower) requires a shiv:
+	  http://ejohn.org/blog/html5-shiv
+	*/
+	  display: block;
+	}
+	
+	html,
+	body {
+	  height: 100%;
+	}
+	
+	
+	b,
+	strong {
+	/*
+	  Makes browsers agree.
+	  IE + Opera = font-weight: bold.
+	  Gecko + WebKit = font-weight: bolder.
+	*/
+	  font-weight: bold;
+	}
+	
+	img {
+	  color: transparent;
+	  font-size: 0;
+	  vertical-align: middle;
+	/*
+	  For IE.
+	  http://css-tricks.com/ie-fix-bicubic-scaling-for-images
+	*/
+	  -ms-interpolation-mode: bicubic;
+	}
+	
+	ol,
+	ul {
+	  list-style: none;
+	}
+	
+	li {
+	/*
+	  For IE6 + IE7:
+	
+	  "display: list-item" keeps bullets from
+	  disappearing if hasLayout is triggered.
+	*/
+	  display: list-item;
+	}
+	/* http://sonspring.com/journal/clearing-floats */
+	
+	.clear {
+	  clear: both;
+	  display: block;
+	  overflow: hidden;
+	  visibility: hidden;
+	  width: 0;
+	  height: 0;
+	}
+	
+	/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+	
+	.clearfix:before,
+	.clearfix:after {
+	  content: '.';
+	  display: block;
+	  overflow: hidden;
+	  visibility: hidden;
+	  font-size: 0;
+	  line-height: 0;
+	  width: 0;
+	  height: 0;
+	}
+	
+	.clearfix:after{
+	  clear: both;
+	}
+	
+	/*
+	  The following zoom:1 rule is specifically for IE6 + IE7.
+	  Move to separate stylesheet if invalid CSS is a problem.
+	*/
+	
+	.clearfix {
+	  zoom: 1;
+	}
+	
+	.wrapfix::after {
+		height: 0px; clear: both; display: block; visibility: hidden; content: ".";
+	}
+	.wrapfix {
+		display: inline-table;
+	}
+	* html .wrapfix {
+		height: 0%;
+	}
+	.wrapfix {
+		display: block;
+	}
+	.body{
+		width:1002px;
+		margin:0 auto;
+	}
+	header{
+		padding-top:114px;
+		height:40px;
+		background:url(images/top_bg.jpg) left top no-repeat;
+		margin-bottom:10px;
+	}
+	header ul{
+		padding-right:5px;
+		background-position:right -40px;
+		height:40px;
+	}
+	header li{
+		float:left;
+		display:inline;
+		_display:inline-block;
+		line-height:36px;
+	}
+	header a, header li.left, header ul, header .bar{
+		background-image:url(images/menu.png);
+	}
+	header li.left, header ul, header .bar{
+		background-repeat:no-repeat;
+	}
+	header .bar{
+		background-position:left -120px;
+		padding-left:2px;
+	}
+	header li a{
+		background-repeat:repeat-x;
+		background-position:left -80px;
+		padding:0 23.43px;
+		font-size:14px;
+		font-weight:bold;
+		color:#fff;
+		height:40px;
+	}
+	header li a span.home{
+		display:block;
+		width:22px;
+		background:url(images/home.png) left top no-repeat;
+		text-indent:-9999px;
+		*padding:0 4px;
+	}
+	header li:hover a span.home, header li.selected a span.home{
+		background-position:left -40px;
+	}
+	header li.left{
+		padding-left:5px;
+		background-position:left top;
+	}
+	header li:hover a, header li.selected a{
+		background-position:left -160px;
+		color:#c7ff1d;
+		text-shadow:#0a4d7c 0 2px 2px;
+		display:block;
+	}
+	/*header li.left:hover{
+		background-position:left -200px;
+	}
+	header li.right:hover{
+		background-position:right -240px;
+	}*/
+</style>
+<script type="text/javascript">
+	function selected(target){
+		$("ul li").each(function(){
+			$(this).removeClass("selected");
+		});
+		$(target).parent().addClass("selected");
+	}
+</script>
+</head>
+
+<body>
+	<div class="body">
+    	<!--header-->
+        <header>
+        	<menu>
+            	<ul>
+                	<li class="left selected"><a href="#"><span class="home">123</span></a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2094/index.htm" onclick="selected(this);" target="_blank">党组织建设</a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2095/index.htm" onclick="selected(this);" target="_blank">干部培育</a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2075/index.htm" onclick="selected(this);" target="_blank">共青团工作</a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2096/index.htm" onclick="selected(this);" target="_blank">企业管理</a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2076/index.htm" onclick="selected(this);" target="_blank">企业文化</a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2077/index.htm" onclick="selected(this);" target="_blank">人物情怀</a></li>
+                	<li class="bar"><a href="http://10.1.44.18/stfb/node2074/node2078/index.htm" onclick="selected(this);" target="_blank">职工思想道德</a></li>
+                	<li class="right bar"><a href="http://10.1.44.18/stfb/node2074/node2097/index.htm" onclick="selected(this);" target="_blank">职工思想教育</a></li>
+                </ul>
+            </menu>
+        </header>
+        <!--header end-->
+    </div>
+</body>
+</html>

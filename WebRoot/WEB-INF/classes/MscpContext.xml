@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--  
+	<bean id="mscpDaoImpl" parent="abstractHibernateDao" class="com.wonders.stpt.mscp.dao.impl.MscpDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+-->
+	<bean id="mscpMonthBidDaoImpl" parent="abstractHibernateDao" class="com.wonders.stpt.mscp.dao.impl.MscpMonthBidDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="mscpMonthNoticeDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpMonthNoticeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="mscpMonthPortalVisitDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpMonthPortalVisitDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpMonthVisitDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpMonthVisitDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpOrganTradeDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpOrganTradeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpProfileDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpProfileDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpSupplyBidDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpSupplyBidDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpTotalBidDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpTotalBidDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="mscpAlarmStatDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpAlarmStatDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpExpertStatDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpExpertStatDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpSupplierStatDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpSupplierStatDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpMonthSupplierStatDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpMonthSupplierStatDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="mscpMonthBidStatDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.mscp.dao.impl.MscpMonthBidStatDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	 
+	
+	<bean id="mscpServiceImpl" class="com.wonders.stpt.mscp.service.impl.MscpServiceImpl" >
+		<!-- <property name="mscpDao" ref="mscpDaoImpl" /> -->
+		<property name="mscpMonthBidDao" ref="mscpMonthBidDaoImpl" />
+		<property name="mscpMonthNoticeDao" ref="mscpMonthNoticeDaoImpl" />
+		<property name="mscpMonthPortalVisitDao" ref="mscpMonthPortalVisitDaoImpl" />
+		<property name="mscpMonthVisitDao" ref="mscpMonthVisitDaoImpl" />
+		<property name="mscpOrganTradeDao" ref="mscpOrganTradeDaoImpl" />
+		<property name="mscpProfileDao" ref="mscpProfileDaoImpl" />
+		<property name="mscpSupplyBidDao" ref="mscpSupplyBidDaoImpl" />
+		<property name="mscpTotalBidDao" ref="mscpTotalBidDaoImpl" />
+		
+		<property name="mscpAlarmStatDao" ref="mscpAlarmStatDaoImpl" />
+		<property name="mscpExpertStatDao" ref="mscpExpertStatDaoImpl" />
+		<property name="mscpSupplierStatDao" ref="mscpSupplierStatDaoImpl" />
+		<property name="mscpMonthSupplierStatDao" ref="mscpMonthSupplierStatDaoImpl" />
+		<property name="mscpMonthBidStatDao" ref="mscpMonthBidStatDaoImpl" />
+		 
+	</bean>
+	
+	<bean id="mscpService" parent="basicTxProxy">
+		<property name="target" ref="mscpServiceImpl" />
+	</bean>
+	
+	<bean id="mscpAction" class="com.wonders.stpt.mscp.action.MscpAction">
+		<property name="mscpService" ref="mscpService" />
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

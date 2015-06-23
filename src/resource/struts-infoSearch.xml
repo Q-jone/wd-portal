@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC    
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="infoSearch" namespace="/infoSearch" extends="cuteframework-default">
+		
+		
+		<action name="findStfbNewsByPage" class="infoSearchAction" method="stfbNewsByPage">
+			<result name="success">
+				/infoSearch/news_list.jsp
+			</result>
+		</action>
+		
+		<action name="findStfbNewsLatestEvents" class="infoSearchAction" method="stfbNewsLatestEvents">
+		</action>
+		<action name="findStfbPicNewsLatestEvents" class="infoSearchAction" method="stfbPicNewsLatestEvents">
+		</action>
+		<action name="findStfbHeadNewsLatestEvents" class="infoSearchAction" method="stfbHeadNewsLatestEvents">
+		</action>
+		<action name="findZTTPNewsLatestEvents" class="infoSearchAction" method="ZTTPNewsLatestEvents">
+		</action>
+			
+	</package>
+</struts>
+	

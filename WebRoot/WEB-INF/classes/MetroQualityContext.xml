@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+		
+		<!-- =================================================================== -->
+	<!--MetroQuality Action Define                                                 -->
+	<!-- =================================================================== -->
+	<bean id="metroQualityDaoImpl" parent="abstractHibernateDao"
+		class="com.wonders.stpt.metroIndicator.dao.impl.MetroQualityDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory2" />
+	</bean>
+	
+	<bean id="metroQualityServiceImpl"
+		class="com.wonders.stpt.metroIndicator.service.impl.MetroQualityServiceImpl">
+		<property name="metroQualityDao" ref="metroQualityDaoImpl" />
+	</bean>
+	
+	<bean id="metroQualityService" parent="basicTxProxy2">
+		<property name="target" ref="metroQualityServiceImpl" />
+	</bean>
+	
+	<bean name="metroQualityAction"
+		class="com.wonders.stpt.metroIndicator.action.MetroQualityAction"
+		singleton="false">
+		<property name="metroQualityService" ref="metroQualityService"></property>	
+	</bean>
+	</beans>
